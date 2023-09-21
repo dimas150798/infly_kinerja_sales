@@ -1,146 +1,88 @@
 <?php
 
-$months = array(1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April', 5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember');
-
-
 class M_DataPerolehan extends CI_Model
 {
     public function index()
     {
         date_default_timezone_set("Asia/Jakarta");
-        $bulan                          = date("m");
-        $bulan_m1                       = date("m", strtotime("-1 months"));
-        $bulan_m2                       = date("m", strtotime("-2 months"));
-        $bulan_m3                       = date("m", strtotime("-3 months"));
-        $tahun                          = date("Y");
 
-        $getPerolehan = $this->db->query("
-        SELECT id_perolehan, bulan_perolehan, jumlah_perolehan, kode_YearMonth FROM data_perolehan
-        ")->result_array();
+        $DataSheet = $this->db->query("SELECT kode_perolehan, COUNT(*) AS jumlah_perolehan FROM data_sheets WHERE status_customer = 'active'
+                                        GROUP BY kode_perolehan ORDER BY kode_perolehan;")->result_array();
 
-        $getMonthNow = $this->db->query("
-        SELECT kode_YearMonth, count(kode_sheet) AS jumlah
-        FROM data_sheet
-        
-        WHERE status = 'active' AND  nama_customer != '' 
-        AND year_cust = '$tahun' AND month_cust = '$bulan'
-        ")->result_array();
+        $DataPerolehan = $this->db->query("SELECT id_perolehan, kode_perolehan, jumlah_perolehan FROM perolehan_perbulan")->result_array();
 
-        $getMonthM1 = $this->db->query("
-        SELECT kode_YearMonth, count(kode_sheet) AS jumlah
-        FROM data_sheet
-        
-        WHERE status = 'active' AND  nama_customer != '' 
-        AND year_cust = '$tahun' AND month_cust = '$bulan_m1'
-        ")->result_array();
-
-        $getMonthM2 = $this->db->query("
-        SELECT kode_YearMonth, count(kode_sheet) AS jumlah
-        FROM data_sheet
-        
-        WHERE status = 'active' AND  nama_customer != '' 
-        AND year_cust = '$tahun' AND month_cust = '$bulan_m2'
-        ")->result_array();
-
-        $getMonthM3 = $this->db->query("
-        SELECT kode_YearMonth, count(kode_sheet) AS jumlah
-        FROM data_sheet
-        
-        WHERE status = 'active' AND  nama_customer != '' 
-        AND year_cust = '$tahun' AND month_cust = '$bulan_m3'
-        ")->result_array();
-
-        // Month Now
-        foreach ($getMonthNow as $data1) {
+        // Loop melalui data sheet
+        foreach ($DataSheet as $dataSheet) {
             $status = false;
 
-            $months = array(1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April', 5 => 'Mei', 6 => 'Juni', 7 => 'Juli', 8 => 'Agustus', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember');
-
-            foreach ($getPerolehan as $perolehan) {
-                if ($data1['kode_YearMonth'] == $perolehan['kode_YearMonth']) {
+            // Loop melalui data perolehan
+            foreach ($DataPerolehan as $key => $dataPerolehan) {
+                if ($dataSheet['kode_perolehan'] == $dataPerolehan['kode_perolehan']) {
                     $status = true;
-                    $this->db->update("data_perolehan", ['jumlah_perolehan' => $data1['jumlah']], ['kode_YearMonth' => $perolehan['kode_YearMonth']]);
+
+                    // Update jumlah perolehan
+                    $DataPerolehan[$key]['jumlah_perolehan'] = $dataSheet['jumlah_perolehan'];
+                    $this->db->where('kode_perolehan', $dataPerolehan['kode_perolehan']);
+                    $this->db->update("perolehan_perbulan", ['jumlah_perolehan' => $dataSheet['jumlah_perolehan']]);
                 }
             }
 
+            // Jika kode perolehan tidak ditemukan, maka lakukan insert
             if ($status == false) {
-                $this->db->insert("data_perolehan", [
-                    "bulan_perolehan"     => $months[(int)$bulan],
-                    "jumlah_perolehan"    => $data1['jumlah'],
-                    "kode_YearMonth"      => $data1['kode_YearMonth']
-                ]);
-            }
-        }
 
-        // Month Now -1
-        foreach ($getMonthM1 as $data2) {
-            $status = false;
+                $months = array(
+                    1 => 'Januari',
+                    2 => 'Februari',
+                    3 => 'Maret',
+                    4 => 'April',
+                    5 => 'Mei',
+                    6 => 'Juni',
+                    7 => 'Juli',
+                    8 => 'Agustus',
+                    9 => 'September',
+                    10 => 'Oktober',
+                    11 => 'November',
+                    12 => 'Desember'
+                );
 
-            foreach ($getPerolehan as $perolehan) {
-                if ($data2['kode_YearMonth'] == $perolehan['kode_YearMonth']) {
-                    $status = true;
-                    $this->db->update("data_perolehan", ['jumlah_perolehan' => $data2['jumlah']], ['kode_YearMonth' => $perolehan['kode_YearMonth']]);
+                $KodePerolehan = $dataSheet['kode_perolehan'];
+
+                // Memisahkan tahun dan bulan
+                list($tahun, $bulan) = explode("-", $KodePerolehan);
+
+                // Menambahkan 0 di depan bulan jika kurang dari 10
+                $BulanPerolehan = sprintf("%02d", $bulan);
+
+                // Cek apakah kode_perolehan sudah ada dalam tabel perolehan_perbulan
+                $query = $this->db->get_where('perolehan_perbulan', ['kode_perolehan' => $KodePerolehan]);
+
+                if ($query->num_rows() > 0) {
+                    // Jika data sudah ada, lakukan update
+                    $this->db->update("perolehan_perbulan", [
+                        "jumlah_perolehan" => $dataSheet['jumlah_perolehan'],
+                        "nama_bulan" => $months[(int)$BulanPerolehan],
+                    ], ['kode_perolehan' => $KodePerolehan]);
+                } else {
+                    // Jika data belum ada, lakukan penyisipan
+                    $this->db->insert("perolehan_perbulan", [
+                        "kode_perolehan" => $KodePerolehan,
+                        "jumlah_perolehan" => $dataSheet['jumlah_perolehan'],
+                        "nama_bulan" => $months[(int)$BulanPerolehan],
+                    ]);
                 }
-            }
-
-            if ($status == false) {
-                $this->db->insert("data_perolehan", [
-                    "bulan_perolehan"     => $months[(int)$bulan_m1],
-                    "jumlah_perolehan"    => $data2['jumlah'],
-                    "kode_YearMonth"      => $data2['kode_YearMonth']
-                ]);
-            }
-        }
-
-        // Month Now -2
-        foreach ($getMonthM2 as $data3) {
-            $status = false;
-
-            foreach ($getPerolehan as $perolehan) {
-                if ($data3['kode_YearMonth'] == $perolehan['kode_YearMonth']) {
-                    $status = true;
-                    $this->db->update("data_perolehan", ['jumlah_perolehan' => $data3['jumlah']], ['kode_YearMonth' => $perolehan['kode_YearMonth']]);
-                }
-            }
-
-            if ($status == false) {
-                $this->db->insert("data_perolehan", [
-                    "bulan_perolehan"     => $months[(int)$bulan_m2],
-                    "jumlah_perolehan"    => $data3['jumlah'],
-                    "kode_YearMonth"      => $data3['kode_YearMonth']
-                ]);
-            }
-        }
-
-        // Month Now -3
-        foreach ($getMonthM3 as $data4) {
-            $status = false;
-
-            foreach ($getPerolehan as $perolehan) {
-                if ($data4['kode_YearMonth'] == $perolehan['kode_YearMonth']) {
-                    $status = true;
-                    $this->db->update("data_perolehan", ['jumlah_perolehan' => $data4['jumlah']], ['kode_YearMonth' => $perolehan['kode_YearMonth']]);
-                }
-            }
-
-            if ($status == false) {
-                $this->db->insert("data_perolehan", [
-                    "bulan_perolehan"     => $months[(int)$bulan_m3],
-                    "jumlah_perolehan"    => $data4['jumlah'],
-                    "kode_YearMonth"      => $data4['kode_YearMonth']
-                ]);
             }
         }
     }
 
     public function getData()
     {
-        $query = $this->db->query("SELECT id_perolehan, 
-        bulan_perolehan, jumlah_perolehan, kode_YearMonth 
-        
-        FROM data_perolehan
-        
-        ORDER BY kode_YearMonth ASC");
+        $query = $this->db->query("SELECT id_perolehan, kode_perolehan, jumlah_perolehan, nama_bulan
+        FROM perolehan_perbulan
+        WHERE kode_perolehan >= DATE_FORMAT(CURRENT_DATE, '%Y-%m')
+           OR kode_perolehan >= DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH), '%Y-%m')
+           OR kode_perolehan >= DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 2 MONTH), '%Y-%m')
+           OR kode_perolehan >= DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 3 MONTH), '%Y-%m')
+        ORDER BY kode_perolehan ASC;");
 
         return $query->result_array();
     }

@@ -9,170 +9,152 @@ if (!function_exists('changeDateFormat')) {
     }
 } ?>
 
-<main id="main" class="main">
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="pagetitle">
-        <h1>Dashboard</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-        </nav>
-    </div><!-- End Page Title -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinerja Sales</title>
+    <!-- Favicons -->
+    <link href="<?php echo base_url(); ?>assets/img/inflynetworks_LogoOnly.png" rel="icon">
+    <link href="<?php echo base_url(); ?>assets/img/inflynetworks_LogoOnly.png" rel="apple-touch-icon">
 
-    <section class="section dashboard">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="<?php echo base_url(); ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Mengimpor Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link href="<?php echo base_url(); ?>assets/css/style_new.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container mt-4">
         <div class="row">
 
-            <!-- full center -->
-            <div class="col-lg-12">
-                <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-3 mb-3">
+                <div class="card info-card sales-card card-1">
 
-                    <!-- Total Card -->
-                    <div class="col-xxl-3 col-md-3">
-                        <div class="card info-card sales-card">
+                    <div class="card-body">
+                        <h4 class="card-title">Aktif <span>| <?php echo $months[(int)$bulan] ?></span></h4>
 
-                            <div class="card-body">
-                                <h5 class="card-title">Total Aktif <span>| <?php echo $months[(int)$bulan] ?></span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6><?php echo $Total ?></h6>
-                                        <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
-
-                                    </div>
-                                </div>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart"></i>
                             </div>
-
+                            <div class="ps-3">
+                                <h1><?php echo $JumlahAktif ?></h1>
+                            </div>
                         </div>
                     </div>
-                    <!-- End Total Card -->
-
-                    <!-- Kebonsari Card -->
-                    <div class="col-xxl-3 col-md-3">
-                        <div class="card info-card sales-card">
-
-                            <div class="card-body">
-                                <h5 class="card-title">Kebonsari <span>| <?php echo $months[(int)$bulan] ?></span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6><?php echo $TotalKBS ?></h6>
-
-                                        <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- End Kebonsari Card -->
-
-                    <!-- Triwung Card -->
-                    <div class="col-xxl-3 col-md-3">
-                        <div class="card info-card sales-card">
-
-                            <div class="card-body">
-                                <h5 class="card-title">Triwung <span>| <?php echo $months[(int)$bulan] ?></span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6><?php echo $TotalTRW ?></h6>
-                                        <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- End Triwung Card -->
-
-                    <!-- Aktif Card -->
-                    <div class="col-xxl-3 col-md-3">
-                        <div class="card info-card sales-card">
-
-                            <div class="card-body">
-                                <h5 class="card-title">Terminasi <span>| <?php echo $months[(int)$bulan] ?></span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>0</h6>
-                                        <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- End Aktif Card -->
 
                 </div>
             </div>
-            <!-- end full center -->
 
-            <!-- Left side columns -->
-            <div class="col-lg-8">
-                <div class="row">
+            <!-- Card 2 -->
+            <div class="col-md-3 mb-3">
+                <div class="card info-card sales-card card-2">
 
-                    <!-- Reports Sales -->
-                    <div class="col-6">
-                        <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Kebonsari <span>| <?php echo $months[(int)$bulan] ?></span></h5>
 
-                            <div class="card-body">
-                                <h5 class="card-title">Reports Sales Monthly <span>| <?php echo $months[(int)$bulan] ?></span></h5>
-
-                                <!-- Line Chart -->
-                                <canvas id="bar"></canvas>
-
-                                <!-- End Line Chart -->
-
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart"></i>
                             </div>
-
+                            <div class="ps-3">
+                                <h1><?php echo $JumlahKBS ?></h1>
+                            </div>
                         </div>
-                    </div><!-- End Reports Sales -->
-
-                    <!-- Top Selling -->
-                    <div class="col-6">
-
-                        <div class="card">
-
-                            <div class="card-body">
-                                <h5 class="card-title">Report Status <span>| <?php echo $months[(int)$bulan] ?></span></span></h5>
-
-                                <canvas id="pie"></canvas>
-
-                            </div>
-                        </div><!-- End Website Traffic -->
                     </div>
-                    <!-- End Top Selling -->
 
                 </div>
-            </div><!-- End Left side columns -->
+            </div>
 
-            <!-- Right side columns -->
-            <div class="col-lg-4">
+            <!-- Card 3 -->
+            <div class="col-md-3 mb-3">
+                <div class="card info-card sales-card card-3">
 
-                <!-- Website Traffic -->
-                <div class="card top-selling overflow-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Triwung <span>| <?php echo $months[(int)$bulan] ?></span></h5>
 
-                    <div class="card-body pb-0 mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h1><?php echo $JumlahTRW ?></h1>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-3 mb-3">
+                <div class="card info-card sales-card card-4">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Terminasi <span>| <?php echo $months[(int)$bulan] ?></span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h1>0</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6 mt-2">
+                <div class="card info-card  card-4">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Laporan Perbulan <span>| <?php echo $months[(int)$bulan] ?></span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <!-- Line Chart -->
+                            <canvas id="bar"></canvas>
+
+                            <!-- End Line Chart -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 mt-2">
+                <div class="card info-card  card-4">
+
+                    <div class="card-body">
                         <h5 class="card-title">Top Sales <span>| <?php echo $months[(int)$bulan] ?></span></span></h5>
 
-                        <table id="topSelling" class="table table-bordered responsive nowrap">
+                        <table id="topSelling" class="table table-bordered table-striped table-hover">
+
                             <thead>
                                 <tr>
                                     <th class="text-center">No</th>
@@ -184,16 +166,128 @@ if (!function_exists('changeDateFormat')) {
 
                             </tbody>
                         </table>
-
                     </div>
-
                 </div>
 
-            </div><!-- End Right side columns -->
+            </div>
 
         </div>
-    </section>
+    </div>
 
-</main><!-- End #main -->
+
+    </div>
+
+    <!-- Mengimpor Bootstrap JavaScript (Opsional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+
+    <!-- Chart -->
+    <script src="<?php echo base_url(); ?>assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/echarts/echarts.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/quill/quill.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/vendor/php-email-form/validate.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        const baseUrl = "<?php echo base_url(); ?>";
+
+        const myChart = (chartType) => {
+            $.ajax({
+                url: baseUrl + 'user/C_DashboardUser/reports_sales',
+                dataType: 'json',
+                method: 'get',
+                success: (response) => {
+                    if (response.length === 0) {
+                        console.error("Data tidak ditemukan.");
+                        return;
+                    }
+
+                    const chartX = [];
+                    const chartY = [];
+
+                    response.forEach(item => {
+                        chartX.push(item.nama_bulan);
+                        chartY.push(item.jumlah_perolehan);
+                    });
+
+                    const chartData = {
+                        labels: chartX,
+                        datasets: [{
+                            label: 'Perolehan',
+                            data: chartY,
+                            backgroundColor: ['#03C988'],
+                            borderColor: ['#03C988'],
+                            borderWidth: 4
+                        }]
+                    };
+
+                    const ctx = document.getElementById(chartType);
+
+                    if (!ctx) {
+                        console.error(`Elemen dengan ID '${chartType}' tidak ditemukan.`);
+                        return;
+                    }
+
+                    const config = {
+                        type: chartType,
+                        data: chartData
+                    };
+
+                    const chart = new Chart(ctx, config);
+                },
+                error: (xhr, status, error) => {
+                    console.error(`Terjadi kesalahan: ${error}`);
+                }
+            });
+        };
+
+        myChart('bar');
+    </script>
+
+    <!-- Ajax Show Data Akun -->
+    <script>
+        var table = $('#topSelling').DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "lengthChange": false,
+            "paging": false,
+            "searching": false,
+            "ajax": {
+                "url": "<?= base_url('user/C_DashboardUser/getTopSelling'); ?>",
+            },
+            "createdRow": function(row, data, dataIndex) {
+                // Tambahkan kelas CSS sesuai dengan indeks data
+                if (dataIndex == 0) {
+                    $('td', row).addClass('green');
+                    $('td:eq(0)', row).html('<div class="text-center"><i class="bi bi-star-fill text-warning"></i> 1 </div>');
+                } else if (dataIndex == 1) {
+                    $('td', row).addClass('blue');
+                    $('td:eq(0)', row).html('<div class="text-center"><i class="bi bi-star-fill text-warning"></i> 2 </div>');
+                } else if (dataIndex == 2) {
+                    $('td', row).addClass('yellow');
+                    $('td:eq(0)', row).html('<div class="text-center"><i class="bi bi-star-fill text-warning"></i> 3 </div>');
+                }
+            }
+
+        });
+
+        setInterval(function() {
+            table.ajax.reload(null, false);
+        }, 1000);
+    </script>
+
+    <script>
+        setTimeout(function() {
+            window.location.reload(1);
+        }, 60000);
+    </script>
+</body>
 
 </html>

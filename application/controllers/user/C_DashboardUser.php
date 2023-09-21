@@ -18,36 +18,15 @@ class C_DashboardUser extends CI_Controller
         $data['bulan']          = $pecahDay[1];
         $data['tanggal']        = $pecahDay[2];
 
-        $tahun                  = $pecahDay[0];
-        $bulan                  = $pecahDay[1];
-        $tanggal                = $pecahDay[2];
+        $data['JumlahAktif']    = $this->M_Spreadsheet->JumlahNewData($pecahDay[0], $pecahDay[1]);
+        $data['JumlahKBS']      = $this->M_Spreadsheet->JumlahNewKBS($pecahDay[0], $pecahDay[1]);
+        $data['JumlahTRW']      = $this->M_Spreadsheet->JumlahNewTRW($pecahDay[0], $pecahDay[1]);
 
-        // Add Perolehan 
-        $this->M_DataPerolehan->index();
-
-        // Add Terminasi
-        $this->M_DataTerminasi->index();
-
-        // April
-        // $this->M_SpreadsheetApril->index();
-
-        // Mei
-        // $this->M_SpreadsheetMei->index();
-
-        // Juni
-        // $this->M_SpreadsheetJuni->index();
-
-        // Month Now
         $this->M_Spreadsheet->index();
 
-        $data['Total']      = $this->M_Spreadsheet->JumlahNewData($tahun, $bulan);
-        $data['TotalKBS']   = $this->M_Spreadsheet->JumlahNewKBS($tahun, $bulan);
-        $data['TotalTRW']   = $this->M_Spreadsheet->JumlahNewTRW($tahun, $bulan);
+        $this->M_DataPerolehan->index();
 
-        $this->load->view('template/V_HeaderUser', $data);
-        $this->load->view('template/V_SidebarUser', $data);
         $this->load->view('user/V_DashboardUser', $data);
-        $this->load->view('template/V_FooterUser', $data);
     }
 
     public function reports_sales()
@@ -81,7 +60,7 @@ class C_DashboardUser extends CI_Controller
         foreach ($result as $dataCustomer) {
             $row = array();
             $row[] = '<div class="text-center">' . ++$no . '</div>';
-            $row[] = '<div class="text-center">' . $dataCustomer['sales'] . '</div>';
+            $row[] = '<div class="text-center">' . $dataCustomer['nama_sales'] . '</div>';
             $row[] = '<div class="text-center">' . $dataCustomer['jumlah'] . '</div>';
             $data[] = $row;
         }

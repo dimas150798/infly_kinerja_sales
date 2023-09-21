@@ -7,81 +7,68 @@ class M_Spreadsheet extends CI_Model
     {
         $response = [];
 
-        $json_string = 'https://script.google.com/macros/s/AKfycbzZz72CNtTd8kIt8U_7UxSdiGAz47qEBPwgO4fq4HDTOGz6U3Sv55rPygKcbfWqS3OL-w/exec';
+        $json_string = 'https://script.google.com/macros/s/AKfycbyAwwxyrLd_JOxXlOlvaD4K0vHkgLG7EKQrgpHTTBa3foVhCzYW_3tR2ol4XLj8joZK9Q/exec';
         $jsondata = file_get_contents($json_string);
         $obj = json_decode($jsondata, TRUE);
 
         $arrayObj = count($obj);
 
-        $getData = $this->db->query("SELECT id_sheet, kode_sheet, tanggal, nama_customer, nama_paket, branch, alamat, status, sales FROM data_sheet")->result_array();
+        $getData = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales, kode_perolehan FROM data_sheets")->result_array();
 
         for ($i = 0; $i < $arrayObj; $i++) {
             $status = false;
-
-            // Memisahkan kode menjadi bulan dan tahun
-            $getMonthYear = explode("/", $obj[$i]['kode']);
 
             foreach ($getData as $value) {
                 if ($obj[$i]['kode'] == $value['kode_sheet']) {
                     $status = true;
 
-                    $this->db->update("data_sheet", ['kode_sheet' => $obj[$i]['kode']], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['tanggal' => $obj[$i]['tanggal']], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['nama_customer' => $obj[$i]['nama_customer']], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['nama_paket' => $obj[$i]['nama_paket']], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['branch' => $obj[$i]['branch']], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['alamat' => $obj[$i]['alamat']], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['status' => $obj[$i]['status']], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['sales' => $obj[$i]['sales']], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['kode_YearMonth' => $getMonthYear[1] . $getMonthYear[2]], ['id_sheet' => $value['id_sheet']]);
-                    $this->db->update("data_sheet", ['updated_at' => date('Y-m-d H:i:s', time())], ['id_sheet' => $value['id_sheet']]);
+                    $KodeSheet = $value['kode_sheet'];
 
-                    $response = [
-                        'kode_sheet'       => $obj[$i]['kode'],
-                        'tanggal'          => $obj[$i]['tanggal'],
-                        'nama_customer'    => $obj[$i]['nama_customer'],
-                        'nama_paket'       => $obj[$i]['nama_paket'],
-                        'branch'           => $obj[$i]['branch'],
-                        'alamat'           => $obj[$i]['alamat'],
-                        'status'           => $obj[$i]['status'],
-                        'sales'            => $obj[$i]['sales'],
+                    // Memisahkan kode_customer berdasarkan tanda '/'
+                    $parts = explode('/', $KodeSheet);
+
+                    // Bagian-bagian yang telah dipisahkan
+                    $kode = $parts[0];
+                    $tahun = $parts[1];
+                    $bulan = $parts[2];
+                    $nomor = $parts[3];
+
+                    $KodePerolehan = $tahun . '-' . $bulan;
+
+                    $updateData = [
+                        'kode_sheet' => $obj[$i]['kode'],
+                        'tanggal_customer' => $obj[$i]['tanggal'],
+                        'nama_customer' => $obj[$i]['nama_customer'],
+                        'nama_paket' => $obj[$i]['nama_paket'],
+                        'branch_customer' => $obj[$i]['branch'],
+                        'alamat_customer' => $obj[$i]['alamat'],
+                        'status_customer' => $obj[$i]['status'],
+                        'nama_sales' => $obj[$i]['sales'],
+                        'kode_perolehan' => $KodePerolehan
                     ];
+
+                    // Memperbarui data
+                    $this->db->where('id_sheet', $value['id_sheet']);
+                    $this->db->update('data_sheets', $updateData);
                 }
             }
 
-            if ($status == false) {
-                if ($obj[$i]['kode'] == "") {
-                } else {
-                    $this->db->insert("data_sheet", [
-                        "kode_sheet"        => $obj[$i]['kode'],
-                        "tanggal"           => $obj[$i]['tanggal'],
-                        "nama_customer"     => $obj[$i]['nama_customer'],
-                        "nama_paket"        => $obj[$i]['nama_paket'],
-                        "branch"            => $obj[$i]['branch'],
-                        "alamat"            => $obj[$i]['alamat'],
-                        "status"            => $obj[$i]['status'],
-                        "sales"             => $obj[$i]['sales'],
-                        "month_cust"        => $getMonthYear[2],
-                        "year_cust"         => $getMonthYear[1],
-                        "kode_YearMonth"    => $getMonthYear[1] . $getMonthYear[2],
-                        'created_at'        => date('Y-m-d H:i:s', time())
-                    ]);
-                }
-
-                $response = [
-                    'id_sheet'          => $this->db->insert_id(),
-                    'kode_sheet'       => $obj[$i]['kode'],
-                    'tanggal'          => $obj[$i]['tanggal'],
-                    'nama_customer'    => $obj[$i]['nama_customer'],
-                    'nama_paket'       => $obj[$i]['nama_paket'],
-                    'branch'           => $obj[$i]['branch'],
-                    'alamat'           => $obj[$i]['alamat'],
-                    'status'           => $obj[$i]['status'],
-                    'sales'            => $obj[$i]['sales'],
+            if (!$status && !empty($obj[$i]['kode'])) {
+                $insertData = [
+                    "kode_sheet" => $obj[$i]['kode'],
+                    "tanggal_customer" => $obj[$i]['tanggal'],
+                    "nama_customer" => $obj[$i]['nama_customer'],
+                    "nama_paket" => $obj[$i]['nama_paket'],
+                    "branch_customer" => $obj[$i]['branch'],
+                    "alamat_customer" => $obj[$i]['alamat'],
+                    "status_customer" => $obj[$i]['status'],
+                    "nama_sales" => $obj[$i]['sales'],
                 ];
+
+                // Menyisipkan data baru
+                $this->db->insert("data_sheets", $insertData);
             }
         }
-        return $response;
     }
 
     public function GetDataSheet($tahun, $bulan)
@@ -98,28 +85,32 @@ class M_Spreadsheet extends CI_Model
 
     public function DataTopSelling($tahun, $bulan)
     {
-        $query = $this->db->query("SELECT sales, 
-        count(nama_customer) AS jumlah
-        FROM data_sheet
-        
-        WHERE status = 'active' AND  nama_customer != '' 
-        AND year_cust = '$tahun' AND month_cust = '$bulan'
-
-        GROUP BY sales
-        ORDER BY jumlah DESC");
+        $query = $this->db->query("SELECT
+        nama_sales,
+        COUNT(nama_customer) AS jumlah
+    FROM
+        data_sheets
+    WHERE
+        status_customer = 'active'
+        AND nama_customer != ''
+        AND SUBSTRING(kode_perolehan, 1, 4) = '$tahun' -- Mengambil 4 karakter pertama sebagai tahun
+        AND SUBSTRING(kode_perolehan, 6, 2) = '$bulan' -- Mengambil 2 karakter setelah karakter ke-5 sebagai bulan
+    GROUP BY
+        nama_sales
+    ORDER BY
+        jumlah DESC;");
 
         return $query->result_array();
     }
 
     public function JumlahNewData($tahun, $bulan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal, nama_customer, nama_paket, branch, alamat, status, sales, month_cust, year_cust
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales 
 
-        FROM data_sheet
+        FROM data_sheets
 
-        WHERE status = 'active' AND  nama_customer != '' 
-        AND year_cust = '$tahun' AND month_cust = '$bulan'
-        
+        WHERE status_customer = 'active' AND  nama_customer != '' 
+        AND YEAR(tanggal_customer) = '$tahun' AND MONTH(tanggal_customer) = '$bulan'
         ");
 
         return $query->num_rows();
@@ -127,24 +118,24 @@ class M_Spreadsheet extends CI_Model
 
     public function JumlahNewKBS($tahun, $bulan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal, nama_customer, nama_paket, branch, alamat, status, sales, month_cust, year_cust
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
 
-        FROM data_sheet
+        FROM data_sheets
 
-        WHERE status = 'active' AND  nama_customer != '' AND branch = 'KBS'
-        AND year_cust = '$tahun' AND month_cust = '$bulan'");
+        WHERE status_customer = 'active' AND  nama_customer != '' AND branch_customer = 'KBS'
+        AND YEAR(tanggal_customer) = '$tahun' AND MONTH(tanggal_customer) = '$bulan'");
 
         return $query->num_rows();
     }
 
     public function JumlahNewTRW($tahun, $bulan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal, nama_customer, nama_paket, branch, alamat, status, sales, month_cust, year_cust
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
 
-        FROM data_sheet
+        FROM data_sheets
 
-        WHERE status = 'active' AND  nama_customer != '' AND branch = 'TRW'
-        AND year_cust = '$tahun' AND month_cust = '$bulan'");
+        WHERE status_customer = 'active' AND  nama_customer != '' AND branch_customer = 'TRW'
+        AND YEAR(tanggal_customer) = '$tahun' AND MONTH(tanggal_customer) = '$bulan'");
 
         return $query->num_rows();
     }

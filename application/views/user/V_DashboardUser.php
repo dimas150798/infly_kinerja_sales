@@ -46,7 +46,7 @@ if (!function_exists('changeDateFormat')) {
         <div class="row">
 
             <!-- Card 1 -->
-            <div class="col-md-3 mb-3">
+            <div class="col-12 col-md-3 col-lg-3 col-xl-3 mb-3">
                 <div class="card info-card sales-card card-1">
 
                     <div class="card-body">
@@ -66,7 +66,7 @@ if (!function_exists('changeDateFormat')) {
             </div>
 
             <!-- Card 2 -->
-            <div class="col-md-3 mb-3">
+            <div class="col-12 col-md-3 col-lg-3 col-xl-3 mb-3">
                 <div class="card info-card sales-card card-2">
 
                     <div class="card-body">
@@ -86,7 +86,7 @@ if (!function_exists('changeDateFormat')) {
             </div>
 
             <!-- Card 3 -->
-            <div class="col-md-3 mb-3">
+            <div class="col-12 col-md-3 col-lg-3 col-xl-3 mb-3">
                 <div class="card info-card sales-card card-3">
 
                     <div class="card-body">
@@ -106,7 +106,7 @@ if (!function_exists('changeDateFormat')) {
             </div>
 
             <!-- Card 4 -->
-            <div class="col-md-3 mb-3">
+            <div class="col-12 col-md-3 col-lg-3 col-xl-3 mb-3">
                 <div class="card info-card sales-card card-4">
 
                     <div class="card-body">
@@ -130,7 +130,7 @@ if (!function_exists('changeDateFormat')) {
 
         <div class="row">
 
-            <div class="col-md-6 col-sm-6 mt-2">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-3">
                 <div class="card info-card  card-4">
 
                     <div class="card-body">
@@ -147,28 +147,27 @@ if (!function_exists('changeDateFormat')) {
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-6 mt-2">
-                <div class="card info-card  card-4">
-
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-3">
+                <div class="card info-card card-4">
                     <div class="card-body">
-                        <h5 class="card-title">Top Sales <span>| <?php echo $months[(int)$bulan] ?></span></span></h5>
+                        <h5 class="card-title">Top Sales <span>| <?php echo $months[(int)$bulan] ?></span></h5>
 
-                        <table id="topSelling" class="table table-bordered table-striped table-hover">
+                        <div class="table-responsive">
+                            <table id="topSelling" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Nama Sales</th>
+                                        <th class="text-center">Total Aktif</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No</th>
-                                    <th class="text-center">Nama Sales</th>
-                                    <th class="text-center">Total Aktif</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
             </div>
 
         </div>

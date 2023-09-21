@@ -131,24 +131,21 @@ if (!function_exists('changeDateFormat')) {
         <div class="row">
 
             <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-3">
-                <div class="card info-card  card-4">
-
+                <div class="card info-card card-4 h-100">
                     <div class="card-body">
                         <h5 class="card-title">Laporan Perbulan <span>| <?php echo $months[(int)$bulan] ?></span></h5>
 
                         <div class="d-flex align-items-center">
                             <!-- Line Chart -->
-                            <canvas id="bar"></canvas>
-
+                            <canvas id="bar" class="img-fluid"></canvas>
                             <!-- End Line Chart -->
                         </div>
                     </div>
-
                 </div>
             </div>
 
             <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-3">
-                <div class="card info-card card-4">
+                <div class="card info-card card-4 h-100">
                     <div class="card-body">
                         <h5 class="card-title">Top Sales <span>| <?php echo $months[(int)$bulan] ?></span></h5>
 
@@ -169,6 +166,7 @@ if (!function_exists('changeDateFormat')) {
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>

@@ -18,9 +18,11 @@ class C_DashboardUser extends CI_Controller
         $data['bulan']          = $pecahDay[1];
         $data['tanggal']        = $pecahDay[2];
 
-        $data['JumlahAktif']    = $this->M_Spreadsheet->JumlahNewData($pecahDay[0], $pecahDay[1]);
-        $data['JumlahKBS']      = $this->M_Spreadsheet->JumlahNewKBS($pecahDay[0], $pecahDay[1]);
-        $data['JumlahTRW']      = $this->M_Spreadsheet->JumlahNewTRW($pecahDay[0], $pecahDay[1]);
+        $KodePerolehan = $pecahDay[0] . '-' . $pecahDay[1];
+
+        $data['JumlahAktif']    = $this->M_Spreadsheet->JumlahNewData($KodePerolehan);
+        $data['JumlahKBS']      = $this->M_Spreadsheet->JumlahNewKBS($KodePerolehan);
+        $data['JumlahTRW']      = $this->M_Spreadsheet->JumlahNewTRW($KodePerolehan);
 
         $this->M_Spreadsheet->index();
 

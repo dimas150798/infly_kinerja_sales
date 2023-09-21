@@ -7,7 +7,7 @@ class M_DataPerolehan extends CI_Model
         date_default_timezone_set("Asia/Jakarta");
 
         $DataSheet = $this->db->query("SELECT kode_perolehan, COUNT(*) AS jumlah_perolehan FROM data_sheets WHERE status_customer = 'active'
-                                        GROUP BY kode_perolehan ORDER BY kode_perolehan;")->result_array();
+                                        GROUP BY kode_perolehan ORDER BY kode_perolehan")->result_array();
 
         $DataPerolehan = $this->db->query("SELECT id_perolehan, kode_perolehan, jumlah_perolehan FROM perolehan_perbulan")->result_array();
 
@@ -82,7 +82,7 @@ class M_DataPerolehan extends CI_Model
            OR kode_perolehan >= DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH), '%Y-%m')
            OR kode_perolehan >= DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 2 MONTH), '%Y-%m')
            OR kode_perolehan >= DATE_FORMAT(DATE_SUB(CURRENT_DATE, INTERVAL 3 MONTH), '%Y-%m')
-        ORDER BY kode_perolehan ASC;");
+        ORDER BY kode_perolehan ASC");
 
         return $query->result_array();
     }

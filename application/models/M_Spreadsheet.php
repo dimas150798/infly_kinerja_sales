@@ -103,39 +103,40 @@ class M_Spreadsheet extends CI_Model
         return $query->result_array();
     }
 
-    public function JumlahNewData($tahun, $bulan)
+    public function JumlahNewData($KodePerolehan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales 
+
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales, kode_perolehan
 
         FROM data_sheets
 
         WHERE status_customer = 'active' AND  nama_customer != '' 
-        AND YEAR(tanggal_customer) = '$tahun' AND MONTH(tanggal_customer) = '$bulan'
+        AND kode_perolehan = '$KodePerolehan'
         ");
 
         return $query->num_rows();
     }
 
-    public function JumlahNewKBS($tahun, $bulan)
+    public function JumlahNewKBS($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
 
         FROM data_sheets
 
         WHERE status_customer = 'active' AND  nama_customer != '' AND branch_customer = 'KBS'
-        AND YEAR(tanggal_customer) = '$tahun' AND MONTH(tanggal_customer) = '$bulan'");
+        AND kode_perolehan = '$KodePerolehan'");
 
         return $query->num_rows();
     }
 
-    public function JumlahNewTRW($tahun, $bulan)
+    public function JumlahNewTRW($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
 
         FROM data_sheets
 
         WHERE status_customer = 'active' AND  nama_customer != '' AND branch_customer = 'TRW'
-        AND YEAR(tanggal_customer) = '$tahun' AND MONTH(tanggal_customer) = '$bulan'");
+        AND kode_perolehan = '$KodePerolehan'");
 
         return $query->num_rows();
     }

@@ -60,3 +60,24 @@
   background-color: #337ab7;
   color: white;
 }
+
+
+/* CSS untuk menghilangkan tombol geser pada tabel */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: none; /* Menghilangkan border */
+}
+
+.table-responsive::-webkit-scrollbar {
+  display: none; /* Menghilangkan scrollbar Webkit */
+}
+
+/* Jika Anda perlu menghilangkan scrollbar di browser lain, tambahkan CSS berikut */
+.table-responsive {
+  scrollbar-width: none; /* Untuk Firefox */
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 0; /* Untuk Edge, IE */
+}

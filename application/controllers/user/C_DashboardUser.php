@@ -11,18 +11,34 @@ class C_DashboardUser extends CI_Controller
         date_default_timezone_set("Asia/Jakarta");
         $toDay = date('Y-m-d');
 
-        // Memisahkan Tanggal
-        $pecahDay       = explode("-", $toDay);
+        // Mendapatkan tanggal sebulan yang lalu
+        $dateOneMonthAgo = date('Y-m-d', strtotime('-1 month', strtotime($toDay)));
 
-        $data['tahun']          = $pecahDay[0];
-        $data['bulan']          = $pecahDay[1];
-        $data['tanggal']        = $pecahDay[2];
+        // Memisahkan Tanggal Sekarang
+        $pecahDayNow = explode("-", $toDay);
 
-        $KodePerolehan = $pecahDay[0] . '-' . $pecahDay[1];
+        $data['tahunNow']   = $pecahDayNow[0];
+        $data['bulanNow']   = $pecahDayNow[1];
+        $data['tanggalNow'] = $pecahDayNow[2];
 
-        $data['JumlahAktif']    = $this->M_Spreadsheet->JumlahNewData($KodePerolehan);
-        $data['JumlahKBS']      = $this->M_Spreadsheet->JumlahNewKBS($KodePerolehan);
-        $data['JumlahTRW']      = $this->M_Spreadsheet->JumlahNewTRW($KodePerolehan);
+        // Memisahkan Tanggal Sebulan yang Lalu
+        $pecahDayOneMonthAgo = explode("-", $dateOneMonthAgo);
+
+        $data['tahunOneMonthAgo']   = $pecahDayOneMonthAgo[0];
+        $data['bulanOneMonthAgo']   = $pecahDayOneMonthAgo[1];
+        $data['tanggalOneMonthAgo'] = $pecahDayOneMonthAgo[2];
+
+        $KodePerolehan_Now          = $pecahDayNow[0] . '-' . $pecahDayNow[1];
+        $KodePerolehan_OneMonthAgo  = $pecahDayOneMonthAgo[0] . '-' . $pecahDayOneMonthAgo[1];
+
+        $data['JumlahAktif']    = $this->M_Spreadsheet->JumlahNewData($KodePerolehan_Now);
+        $data['JumlahKBS']      = $this->M_Spreadsheet->JumlahNewKBS($KodePerolehan_Now);
+        $data['JumlahTRW']      = $this->M_Spreadsheet->JumlahNewTRW($KodePerolehan_Now);
+
+        $data['OneMonthAgo_Aktif']    = $this->M_Spreadsheet->JumlahData($KodePerolehan_OneMonthAgo);
+        $data['OneMonthAgo_KBS']      = $this->M_Spreadsheet->JumlahKBS($KodePerolehan_OneMonthAgo);
+        $data['OneMonthAgo_TRW']      = $this->M_Spreadsheet->JumlahTRW($KodePerolehan_OneMonthAgo);
+
 
         $this->M_Spreadsheet->index();
 
@@ -39,7 +55,20 @@ class C_DashboardUser extends CI_Controller
 
     public function reports_status()
     {
-        $data = $this->M_DataTerminasi->getData();
+        date_default_timezone_set("Asia/Jakarta");
+        $toDay = date('Y-m-d');
+
+        // Memisahkan Tanggal Sekarang
+        $pecahDayNow = explode("-", $toDay);
+
+        $data['tahunNow']   = $pecahDayNow[0];
+        $data['bulanNow']   = $pecahDayNow[1];
+        $data['tanggalNow'] = $pecahDayNow[2];
+
+        $KodePerolehan_Now          = $pecahDayNow[0] . '-' . $pecahDayNow[1];
+
+
+        $data = $this->M_Spreadsheet->GetAllDataSheet($KodePerolehan_Now);
         echo json_encode($data);
     }
 

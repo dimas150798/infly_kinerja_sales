@@ -83,6 +83,17 @@ class M_Spreadsheet extends CI_Model
         return $query->result_array();
     }
 
+    public function GetAllDataSheet($KodePerolehan)
+    {
+        $query = $this->db->query("SELECT status_customer, COUNT(*) as jumlah_customer
+        FROM data_sheets
+        WHERE nama_customer != '' 
+        AND kode_perolehan = '$KodePerolehan'
+        GROUP BY status_customer;");
+
+        return $query->result_array();
+    }
+
     public function DataTopSelling($tahun, $bulan)
     {
         $query = $this->db->query("SELECT
@@ -117,6 +128,20 @@ class M_Spreadsheet extends CI_Model
         return $query->num_rows();
     }
 
+    public function JumlahData($KodePerolehan)
+    {
+
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales, kode_perolehan
+
+        FROM data_sheets
+
+        WHERE status_customer = 'active' AND  nama_customer != '' 
+        AND kode_perolehan = '$KodePerolehan'
+        ");
+
+        return $query->num_rows();
+    }
+
     public function JumlahNewKBS($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
@@ -129,7 +154,31 @@ class M_Spreadsheet extends CI_Model
         return $query->num_rows();
     }
 
+    public function JumlahKBS($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
+
+        FROM data_sheets
+
+        WHERE status_customer = 'active' AND  nama_customer != '' AND branch_customer = 'KBS'
+        AND kode_perolehan = '$KodePerolehan'");
+
+        return $query->num_rows();
+    }
+
     public function JumlahNewTRW($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
+
+        FROM data_sheets
+
+        WHERE status_customer = 'active' AND  nama_customer != '' AND branch_customer = 'TRW'
+        AND kode_perolehan = '$KodePerolehan'");
+
+        return $query->num_rows();
+    }
+
+    public function JumlahTRW($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
 

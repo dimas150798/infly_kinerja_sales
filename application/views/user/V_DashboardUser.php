@@ -61,9 +61,9 @@ if (!function_exists('changeDateFormat')) {
                                     $percentageChangeAktif = ($changeAktif / $OneMonthAgo_Aktif) * 100;
 
                                     if ($changeAktif < 0) {
-                                        echo '<i class="bi bi-arrow-down"></i>';
+                                        echo '<i class="bi bi-arrow-down-circle-fill"></i>';
                                     } elseif ($changeAktif > 0) {
-                                        echo '<i class="bi bi-arrow-up"></i>';
+                                        echo '<i class="bi bi-arrow-up-circle-fill"></i>';
                                     } else {
                                         echo '<i class="bi bi-arrow-right"></i>';
                                     }
@@ -82,9 +82,9 @@ if (!function_exists('changeDateFormat')) {
                                         if ($changeAktif < 0) {
                                             echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeAktif), 2) . '% Penurunan</strong></div>';
                                         } elseif ($changeAktif > 0) {
-                                            echo '<div class="text-success ms-3"><strong>' . number_format($percentageChangeAktif, 2) . '% Kenaikan</strong></div>';
+                                            echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeAktif, 2) . '% Kenaikan</strong></div>';
                                         } else {
-                                            echo '<div class="text-info ms-3"><strong>Tidak Berubah</strong></div>';
+                                            echo '<div class="text-white ms-3"><strong>Tidak Berubah</strong></div>';
                                         }
                                         ?>
                                     </div>
@@ -101,9 +101,9 @@ if (!function_exists('changeDateFormat')) {
                                     $percentageChangeKBS = ($changeKBS / $OneMonthAgo_KBS) * 100;
 
                                     if ($changeKBS < 0) {
-                                        echo '<i class="bi bi-arrow-down"></i>';
+                                        echo '<i class="bi bi-arrow-down-circle-fill"></i>';
                                     } elseif ($changeKBS > 0) {
-                                        echo '<i class="bi bi-arrow-up"></i>';
+                                        echo '<i class="bi bi-arrow-up-circle-fill"></i>';
                                     } else {
                                         echo '<i class="bi bi-arrow-right"></i>';
                                     }
@@ -122,17 +122,15 @@ if (!function_exists('changeDateFormat')) {
                                         if ($changeKBS < 0) {
                                             echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeKBS), 2) . '% Penurunan</strong></div>';
                                         } elseif ($changeKBS > 0) {
-                                            echo '<div class="text-success ms-3"><strong>' . number_format($percentageChangeKBS, 2) . '% Kenaikan</strong></div>';
+                                            echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeKBS, 2) . '% Kenaikan</strong></div>';
                                         } else {
-                                            echo '<div class="text-info ms-3"><strong>Tidak Berubah</strong></div>';
+                                            echo '<div class="text-white ms-3"><strong>Tidak Berubah</strong></div>';
                                         }
                                         ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
 
                         <!-- Card 3 - Triwung -->
                         <div class="info-item mt-3">
@@ -143,9 +141,9 @@ if (!function_exists('changeDateFormat')) {
                                     $percentageChangeTRW = ($changeTRW / $OneMonthAgo_TRW) * 100;
 
                                     if ($changeTRW < 0) {
-                                        echo '<i class="bi bi-arrow-down"></i>';
+                                        echo '<i class="bi bi-arrow-down-circle-fill"></i>';
                                     } elseif ($changeTRW > 0) {
-                                        echo '<i class="bi bi-arrow-up"></i>';
+                                        echo '<i class="bi bi-arrow-up-circle-fill"></i>';
                                     } else {
                                         echo '<i class="bi bi-arrow-right"></i>';
                                     }
@@ -164,9 +162,9 @@ if (!function_exists('changeDateFormat')) {
                                         if ($changeTRW < 0) {
                                             echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeTRW), 2) . '% Penurunan</strong></div>';
                                         } elseif ($changeTRW > 0) {
-                                            echo '<div class="text-success ms-3"><strong>' . number_format($percentageChangeTRW, 2) . '% Kenaikan</strong></div>';
+                                            echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeTRW, 2) . '% Kenaikan</strong></div>';
                                         } else {
-                                            echo '<div class="text-info ms-3"><strong>Tidak Berubah</strong></div>';
+                                            echo '<div class="text-white ms-3"><strong>Tidak Berubah</strong></div>';
                                         }
                                         ?>
                                     </div>

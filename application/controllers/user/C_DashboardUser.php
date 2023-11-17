@@ -6,6 +6,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class C_DashboardUser extends CI_Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        if ($this->session->userdata('email') == null) {
+
+            // Notifikasi Login Terlebih Dahulu
+            $this->session->set_flashdata('LoginGagal_icon', 'error');
+            $this->session->set_flashdata('LoginGagal_title', 'Login Terlebih Dahulu');
+
+            redirect('C_FormLogin');
+        }
+    }
+
     public function index()
     {
         date_default_timezone_set("Asia/Jakarta");

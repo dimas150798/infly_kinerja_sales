@@ -5,14 +5,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class C_FormLogin extends CI_Controller
 {
 
-    // public function index()
-    // {
-    //     // $this->load->view('template/V_HeaderUser');
-    //     // $this->load->view('template/V_SidebarUser');
-    //     $this->load->view('user/V_DashboardUser');
-    //     // $this->load->view('template/V_FooterUser');
-    // }
-
     public function index()
     {
         $this->form_validation->set_rules('email_login', 'email_login', 'required');
@@ -68,9 +60,14 @@ class C_FormLogin extends CI_Controller
         }
     }
 
-    public function insertCustomer()
+    public function InsertAuto_KinerjaSales()
     {
-        $this->MikrotikModel->index();
+        $this->M_Spreadsheet->index();
+    }
+
+    public function InsertAuto_PerolehanSales()
+    {
+        $this->M_DataPerolehan->index();
     }
 
 

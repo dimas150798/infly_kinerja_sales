@@ -44,13 +44,15 @@ class C_DashboardUser extends CI_Controller
         $KodePerolehan_Now          = $pecahDayNow[0] . '-' . $pecahDayNow[1];
         $KodePerolehan_OneMonthAgo  = $pecahDayOneMonthAgo[0] . '-' . $pecahDayOneMonthAgo[1];
 
-        $data['JumlahAktif']    = $this->M_Spreadsheet->JumlahNewData($KodePerolehan_Now);
-        $data['JumlahKBS']      = $this->M_Spreadsheet->JumlahNewKBS($KodePerolehan_Now);
-        $data['JumlahTRW']      = $this->M_Spreadsheet->JumlahNewTRW($KodePerolehan_Now);
+        $data['JumlahAktif']    = $this->M_Spreadsheet->JumlahData($KodePerolehan_Now);
+        $data['JumlahKBS']      = $this->M_Spreadsheet->JumlahKBS($KodePerolehan_Now);
+        $data['JumlahTRW']      = $this->M_Spreadsheet->JumlahTRW($KodePerolehan_Now);
+        $data['JumlahKanigaran']      = $this->M_Spreadsheet->JumlahKanigaran($KodePerolehan_Now);
 
         $data['OneMonthAgo_Aktif']    = $this->M_Spreadsheet->JumlahData($KodePerolehan_OneMonthAgo);
         $data['OneMonthAgo_KBS']      = $this->M_Spreadsheet->JumlahKBS($KodePerolehan_OneMonthAgo);
         $data['OneMonthAgo_TRW']      = $this->M_Spreadsheet->JumlahTRW($KodePerolehan_OneMonthAgo);
+        $data['OneMonthAgo_Kanigaran']      = $this->M_Spreadsheet->JumlahKanigaran($KodePerolehan_OneMonthAgo);
 
 
         $this->M_Spreadsheet->index();

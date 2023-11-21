@@ -172,6 +172,48 @@ if (!function_exists('changeDateFormat')) {
                             </div>
                         </div>
 
+                        <!-- Card 4 - Kanigaran -->
+                        <div class="info-item mt-3">
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-arrow-up-circle-fill"></i>
+                                    <?php
+                                    // $changeKanigaran = $JumlahKanigaran - 0;
+                                    // $percentageChangeKanigaran = ($changeKanigaran / 0) * 100;
+
+                                    // if ($changeKanigaran < 0) {
+                                    //     echo '<i class="bi bi-arrow-down-circle-fill"></i>';
+                                    // } elseif ($changeKanigaran > 0) {
+                                    //     echo '<i class="bi bi-arrow-up-circle-fill"></i>';
+                                    // } else {
+                                    //     echo '<i class="bi bi-arrow-right"></i>';
+                                    // }
+                                    ?>
+                                </div>
+                                <div class="ps-3">
+                                    <h5>Kanigaran</h5>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h1><?php echo $JumlahKanigaran ?></h1>
+                                        </div>
+                                        <?php
+                                        $changeKanigaran = $JumlahKanigaran;
+                                        $percentageChangeKanigaran = ($changeKanigaran) * 1;
+
+                                        if ($changeKanigaran < 0) {
+                                            echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeKanigaran), 2) . '% Penurunan</strong></div>';
+                                        } elseif ($changeKanigaran > 0) {
+                                            echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeKanigaran, 2) . '% Kenaikan</strong></div>';
+                                        } else {
+                                            echo '<div class="text-white ms-3"><strong>Tidak Berubah</strong></div>';
+                                        }
+
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Card 4 - Terminasi -->
                         <div class="info-item mt-3">
                             <div class="d-flex align-items-center">

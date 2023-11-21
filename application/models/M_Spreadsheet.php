@@ -189,4 +189,28 @@ class M_Spreadsheet extends CI_Model
 
         return $query->num_rows();
     }
+
+    public function JumlahNewKanigaran($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
+
+        FROM data_sheets
+
+        WHERE status_customer = 'active' AND  nama_customer != '' AND branch_customer = 'Kanigaran'
+        AND kode_perolehan = '$KodePerolehan'");
+
+        return $query->num_rows();
+    }
+
+    public function JumlahKanigaran($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales
+
+        FROM data_sheets
+
+        WHERE status_customer = 'active' AND  nama_customer != '' AND branch_customer = 'Kanigaran'
+        AND kode_perolehan = '$KodePerolehan'");
+
+        return $query->num_rows();
+    }
 }

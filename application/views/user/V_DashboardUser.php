@@ -38,6 +38,8 @@ if (!function_exists('changeDateFormat')) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <link href="<?php echo base_url(); ?>assets/css/style_new.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/test.css" rel="stylesheet">
+
 
 </head>
 
@@ -54,79 +56,97 @@ if (!function_exists('changeDateFormat')) {
 
                         <!-- Card 1 - Aktif -->
                         <div class="info-item mt-3">
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <?php
-                                    $changeAktif = $JumlahAktif - $OneMonthAgo_Aktif;
-                                    $percentageChangeAktif = ($changeAktif / $OneMonthAgo_Aktif) * 100;
-
-                                    if ($changeAktif < 0) {
-                                        echo '<i class="bi bi-arrow-down-circle-fill"></i>';
-                                    } elseif ($changeAktif > 0) {
-                                        echo '<i class="bi bi-arrow-up-circle-fill"></i>';
-                                    } else {
-                                        echo '<i class="bi bi-arrow-right"></i>';
-                                    }
-                                    ?>
-                                </div>
-                                <div class="ps-3">
-                                    <h5>Total Aktif</h5>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <h1><?php echo $JumlahAktif ?></h1>
+                            <div class="body-penjualan">
+                                <div class="container">
+                                    <div class="row align-content-center">
+                                        <div class="col-4 mx-auto text-center align-center">
+                                            <div class="card-icon">
+                                                <?php
+                                                $changeAktif = $JumlahAktif - $OneMonthAgo_Aktif;
+                                                $percentageChangeAktif = ($changeAktif / $OneMonthAgo_Aktif) * 100;
+                                                if ($changeAktif < 0) {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_turun.png" alt="icon-card">';
+                                                } elseif ($changeAktif > 0) {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_naik.png" alt="icon-card">';
+                                                } else {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_naik.png" alt="icon-card">';
+                                                }
+                                                ?>
+                                            </div>
                                         </div>
-                                        <?php
-                                        $changeAktif = $JumlahAktif - $OneMonthAgo_Aktif;
-                                        $percentageChangeAktif = ($changeAktif / $OneMonthAgo_Aktif) * 100;
+                                        <div class="col-8">
+                                            <div class="text-penjualan">
+                                                <h5>Total Aktif</h5>
 
-                                        if ($changeAktif < 0) {
-                                            echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeAktif), 2) . '% Penurunan</strong></div>';
-                                        } elseif ($changeAktif > 0) {
-                                            echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeAktif, 2) . '% Kenaikan</strong></div>';
-                                        } else {
-                                            echo '<div class="text-white ms-3"><strong>Tidak Berubah</strong></div>';
-                                        }
-                                        ?>
+                                                <div class="presentase-penjualan">
+                                                    <h1><?php echo $JumlahAktif ?></h1>
+
+                                                    <?php
+                                                    $changeAktif = $JumlahAktif - $OneMonthAgo_Aktif;
+                                                    $percentageChangeAktif = ($changeAktif / $OneMonthAgo_Aktif) * 100;
+
+                                                    if ($changeAktif < 0) {
+                                                        echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeAktif), 2) . '% Penurunan</strong></div>';
+                                                    } elseif ($changeAktif > 0) {
+                                                        echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeAktif, 2) . '% Kenaikan</strong></div>';
+                                                    } else {
+                                                        echo '<div class="text-white ms-3"><strong>' . $JumlahAktif . '% Stabil</strong></div>';
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+
+
                             </div>
                         </div>
 
                         <!-- Card 2 - Kebonsari -->
                         <div class="info-item mt-3">
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <?php
-                                    $changeKBS = $JumlahKBS - $OneMonthAgo_KBS;
-                                    $percentageChangeKBS = ($changeKBS / $OneMonthAgo_KBS) * 100;
+                            <div class="body-penjualan">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="card-icon">
+                                                <?php
+                                                $changeKBS = $JumlahKBS - $OneMonthAgo_KBS;
+                                                $percentageChangeKBS = ($changeKBS / $OneMonthAgo_KBS) * 100;
 
-                                    if ($changeKBS < 0) {
-                                        echo '<i class="bi bi-arrow-down-circle-fill"></i>';
-                                    } elseif ($changeKBS > 0) {
-                                        echo '<i class="bi bi-arrow-up-circle-fill"></i>';
-                                    } else {
-                                        echo '<i class="bi bi-arrow-right"></i>';
-                                    }
-                                    ?>
-                                </div>
-                                <div class="ps-3">
-                                    <h5>Kebonsari</h5>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <h1><?php echo $JumlahKBS ?></h1>
+                                                if ($changeKBS < 0) {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_turun.png" alt="icon-card">';
+                                                } elseif ($changeKBS > 0) {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_naik.png" alt="icon-card">';
+                                                } else {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_naik.png" alt="icon-card">';
+                                                }
+                                                ?>
+                                            </div>
                                         </div>
-                                        <?php
-                                        $changeKBS = $JumlahKBS - $OneMonthAgo_KBS;
-                                        $percentageChangeKBS = ($changeKBS / $OneMonthAgo_KBS) * 100;
+                                        <div class="col-8">
+                                            <div class="text-penjualan">
+                                                <h5>Kebonsari</h5>
 
-                                        if ($changeKBS < 0) {
-                                            echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeKBS), 2) . '% Penurunan</strong></div>';
-                                        } elseif ($changeKBS > 0) {
-                                            echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeKBS, 2) . '% Kenaikan</strong></div>';
-                                        } else {
-                                            echo '<div class="text-white ms-3"><strong>Tidak Berubah</strong></div>';
-                                        }
-                                        ?>
+                                                <div class="presentase-penjualan">
+                                                    <h1><?php echo $JumlahKBS ?></h1>
+
+                                                    <?php
+                                                    $changeKBS = $JumlahKBS - $OneMonthAgo_KBS;
+                                                    $percentageChangeKBS = ($changeKBS / $OneMonthAgo_KBS) * 100;
+
+                                                    if ($changeKBS < 0) {
+                                                        echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeKBS), 2) . '% Penurunan</strong></div>';
+                                                    } elseif ($changeKBS > 0) {
+                                                        echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeKBS, 2) . '% Kenaikan</strong></div>';
+                                                    } else {
+                                                        echo '<div class="text-white ms-3"><strong>' . $JumlahKBS . '% Stabil</strong></div>';
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -134,39 +154,47 @@ if (!function_exists('changeDateFormat')) {
 
                         <!-- Card 3 - Triwung -->
                         <div class="info-item mt-3">
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <?php
-                                    $changeTRW = $JumlahTRW - $OneMonthAgo_TRW;
-                                    $percentageChangeTRW = ($changeTRW / $OneMonthAgo_TRW) * 100;
+                            <div class="body-penjualan">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="card-icon">
+                                                <?php
+                                                $changeTRW = $JumlahTRW - $OneMonthAgo_TRW;
+                                                $percentageChangeTRW = ($changeTRW / $OneMonthAgo_TRW) * 100;
 
-                                    if ($changeTRW < 0) {
-                                        echo '<i class="bi bi-arrow-down-circle-fill"></i>';
-                                    } elseif ($changeTRW > 0) {
-                                        echo '<i class="bi bi-arrow-up-circle-fill"></i>';
-                                    } else {
-                                        echo '<i class="bi bi-arrow-right"></i>';
-                                    }
-                                    ?>
-                                </div>
-                                <div class="ps-3">
-                                    <h5>Triwung</h5>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <h1><?php echo $JumlahTRW ?></h1>
+                                                if ($changeTRW < 0) {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_turun.png" alt="icon-card">';
+                                                } elseif ($changeTRW > 0) {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_naik.png" alt="icon-card">';
+                                                } else {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_naik.png" alt="icon-card">';
+                                                }
+                                                ?>
+                                            </div>
                                         </div>
-                                        <?php
-                                        $changeTRW = $JumlahTRW - $OneMonthAgo_TRW;
-                                        $percentageChangeTRW = ($changeTRW / $OneMonthAgo_TRW) * 100;
+                                        <div class="col-8">
+                                            <div class="text-penjualan">
+                                                <h5>Triwung</h5>
 
-                                        if ($changeTRW < 0) {
-                                            echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeTRW), 2) . '% Penurunan</strong></div>';
-                                        } elseif ($changeTRW > 0) {
-                                            echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeTRW, 2) . '% Kenaikan</strong></div>';
-                                        } else {
-                                            echo '<div class="text-white ms-3"><strong>Tidak Berubah</strong></div>';
-                                        }
-                                        ?>
+                                                <div class="presentase-penjualan">
+                                                    <h1><?php echo $JumlahTRW ?></h1>
+
+                                                    <?php
+                                                    $changeTRW = $JumlahTRW - $OneMonthAgo_TRW;
+                                                    $percentageChangeTRW = ($changeTRW / $OneMonthAgo_TRW) * 100;
+
+                                                    if ($changeTRW < 0) {
+                                                        echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeTRW), 2) . '% Penurunan</strong></div>';
+                                                    } elseif ($changeTRW > 0) {
+                                                        echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeTRW, 2) . '% Kenaikan</strong></div>';
+                                                    } else {
+                                                        echo '<div class="text-white ms-3"><strong>' . $JumlahTRW . '% Stabil</strong></div>';
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -174,48 +202,54 @@ if (!function_exists('changeDateFormat')) {
 
                         <!-- Card 4 - Kanigaran -->
                         <div class="info-item mt-3">
-                            <div class="d-flex align-items-center">
-                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-arrow-up-circle-fill"></i>
-                                    <?php
-                                    // $changeKanigaran = $JumlahKanigaran - 0;
-                                    // $percentageChangeKanigaran = ($changeKanigaran / 0) * 100;
+                            <div class="body-penjualan">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="card-icon">
+                                                <?php
+                                                $changeKNG = $JumlahKNG - $OneMonthAgo_KNG;
+                                                $percentageChangeKNG = ($changeKNG / $OneMonthAgo_KNG) * 100;
 
-                                    // if ($changeKanigaran < 0) {
-                                    //     echo '<i class="bi bi-arrow-down-circle-fill"></i>';
-                                    // } elseif ($changeKanigaran > 0) {
-                                    //     echo '<i class="bi bi-arrow-up-circle-fill"></i>';
-                                    // } else {
-                                    //     echo '<i class="bi bi-arrow-right"></i>';
-                                    // }
-                                    ?>
-                                </div>
-                                <div class="ps-3">
-                                    <h5>Kanigaran</h5>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <h1><?php echo $JumlahKanigaran ?></h1>
+                                                if ($changeKNG < 0) {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_turun.png" alt="icon-card">';
+                                                } elseif ($changeKNG > 0) {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_naik.png" alt="icon-card">';
+                                                } else {
+                                                    echo '<img class="icon-card" src="' . base_url() . 'assets/img/informasi/jempol_naik.png" alt="icon-card">';
+                                                }
+                                                ?>
+                                            </div>
                                         </div>
-                                        <?php
-                                        $changeKanigaran = $JumlahKanigaran;
-                                        $percentageChangeKanigaran = ($changeKanigaran) * 1;
+                                        <div class="col-8">
+                                            <div class="text-penjualan">
+                                                <h5>Kanigaran</h5>
 
-                                        if ($changeKanigaran < 0) {
-                                            echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeKanigaran), 2) . '% Penurunan</strong></div>';
-                                        } elseif ($changeKanigaran > 0) {
-                                            echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeKanigaran, 2) . '% Kenaikan</strong></div>';
-                                        } else {
-                                            echo '<div class="text-white ms-3"><strong>Tidak Berubah</strong></div>';
-                                        }
+                                                <div class="presentase-penjualan">
+                                                    <h1><?php echo $JumlahKNG ?></h1>
 
-                                        ?>
+                                                    <?php
+                                                    $changeKNG = $JumlahKNG - $OneMonthAgo_KNG;
+                                                    $percentageChangeKNG = ($changeKNG / $OneMonthAgo_KNG) * 100;
+
+                                                    if ($changeKNG < 0) {
+                                                        echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeKNG), 2) . '% Penurunan</strong></div>';
+                                                    } elseif ($changeKNG > 0) {
+                                                        echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeKNG, 2) . '% Kenaikan</strong></div>';
+                                                    } else {
+                                                        echo '<div class="text-white ms-3"><strong>' . $JumlahKNG . '% Stabil</strong></div>';
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card 4 - Terminasi -->
-                        <div class="info-item mt-3">
+                        <!-- <div class="info-item mt-3">
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-cart"></i>
@@ -223,10 +257,9 @@ if (!function_exists('changeDateFormat')) {
                                 <div class="ps-3">
                                     <h6>Terminasi</h6>
                                     <h1>0</h1>
-                                    <!-- Masukkan logika perubahan persentase di sini -->
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
 
@@ -234,24 +267,35 @@ if (!function_exists('changeDateFormat')) {
             </div>
 
             <!-- Card 2 -->
-            <div class="col-12 col-md-8 col-lg-8 col-xl-8 mb-3">
-                <div class="card info-card card-4 h-100">
+            <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
+                <div class="card info-card ">
+
                     <div class="card-body">
-                        <h5 class="card-title">Top Sales <span>| <?php echo $months[(int)$bulanNow] ?></span></h5>
+                        <h4 class="ct-selling">Top Sales <span>| <?php echo $months[(int)$bulanNow] ?></span></h4>
 
-                        <div class="table-responsive">
-                            <table id="topSelling" class="table table-bordered table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">No</th>
-                                        <th class="text-center">Nama Sales</th>
-                                        <th class="text-center">Total Aktif</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        <div class="card-body">
+                            <div class="rank-list">
+                                <?php foreach ($result as $key => $username) : ?>
+                                    <div class="rank-item <?php if ($key + 1 <= 3) echo 'first-three'; ?><?php if ($key + 1 > 3) echo 'rank-four-and-below'; ?>">
 
-                                </tbody>
-                            </table>
+                                        <div class="username-container">
+                                            <span class="username"><?= $username['nama_sales']; ?></span>
+                                            <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan = <?= $username['jumlah']; ?></span>
+                                        </div>
+
+                                        <?php if ($key + 1 == 1) : ?>
+                                            <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_01.png" alt="Medal">
+                                        <?php elseif ($key + 1 == 2) : ?>
+                                            <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_02.png" alt="Medal">
+                                        <?php elseif ($key + 1 == 3) : ?>
+                                            <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_03.png" alt="Medal">
+                                        <?php else : ?>
+                                            <span class="nomor"><?= '#' . $key + 1; ?></span>
+                                        <?php endif; ?>
+
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>

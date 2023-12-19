@@ -1,0 +1,103 @@
+.rank-list {
+    /* width: 250px; */
+}
+
+.rank-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.rank-item:hover {
+    background-color: #f0f0f0;
+}
+
+.medal {
+    width: 60px;
+    height: 60px;
+    margin-right: 5px;
+    filter: drop-shadow(16px 7px 8px );
+    -webkit-filter: drop-shadow(9px 8px 9px  #000000);
+}
+
+.username-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+/* Add a blue border for ranks 1 to 3 */
+.rank-item.first-three{
+    background-color: #43D9BD;
+    border: 1.5px solid #063573;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+
+.rank-item.first-three .username {
+    font-size: 19px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 5px; 
+    border-bottom: 2px solid #000000;
+}
+
+.rank-item.first-three .jumlah {
+    font-size: 15px;
+    color: #000000;
+    font-weight: bold;
+}
+
+/* Add a red border for ranks 4 and below */
+.rank-item.rank-four-and-below {
+    background-color: #8C8C8C;
+    border: 1px solid #404040;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+
+.rank-item.rank-four-and-below .username {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 5px; 
+    border-bottom: 2px solid #000000;
+}
+
+.rank-item.rank-four-and-below .jumlah {
+    font-size: 15px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.rank-item.rank-four-and-below .nomor {
+    margin-right: 20px; 
+    font-weight: bold;
+    font-size: 22px;
+    color: #000000;
+}
+
+.ct-selling {
+    color: #000000;
+    font: 17px;
+    font-weight: bold;
+}
+
+.ct-selling span {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-weight: bold;
+}
+

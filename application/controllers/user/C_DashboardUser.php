@@ -24,6 +24,13 @@ class C_DashboardUser extends CI_Controller
         date_default_timezone_set("Asia/Jakarta");
         $toDay = date('Y-m-d');
 
+        // Memisahkan Tanggal
+        $pecahDay       = explode("-", $toDay);
+
+        $tahun          = $pecahDay[0];
+        $bulan          = $pecahDay[1];
+
+
         // Mendapatkan tanggal sebulan yang lalu
         $dateOneMonthAgo = date('Y-m-d', strtotime('-1 month', strtotime($toDay)));
 
@@ -47,19 +54,21 @@ class C_DashboardUser extends CI_Controller
         $data['JumlahAktif']    = $this->M_Spreadsheet->JumlahData($KodePerolehan_Now);
         $data['JumlahKBS']      = $this->M_Spreadsheet->JumlahKBS($KodePerolehan_Now);
         $data['JumlahTRW']      = $this->M_Spreadsheet->JumlahTRW($KodePerolehan_Now);
-        $data['JumlahKanigaran']      = $this->M_Spreadsheet->JumlahKanigaran($KodePerolehan_Now);
+        $data['JumlahKNG']      = $this->M_Spreadsheet->JumlahKanigaran($KodePerolehan_Now);
 
         $data['OneMonthAgo_Aktif']    = $this->M_Spreadsheet->JumlahData($KodePerolehan_OneMonthAgo);
         $data['OneMonthAgo_KBS']      = $this->M_Spreadsheet->JumlahKBS($KodePerolehan_OneMonthAgo);
         $data['OneMonthAgo_TRW']      = $this->M_Spreadsheet->JumlahTRW($KodePerolehan_OneMonthAgo);
-        $data['OneMonthAgo_Kanigaran']      = $this->M_Spreadsheet->JumlahKanigaran($KodePerolehan_OneMonthAgo);
-
+        $data['OneMonthAgo_KNG']      = $this->M_Spreadsheet->JumlahKanigaran($KodePerolehan_OneMonthAgo);
 
         $this->M_Spreadsheet->index();
 
         $this->M_DataPerolehan->index();
 
+        $data['result'] = $this->M_Spreadsheet->DataTopSelling($tahun, $bulan);
+
         $this->load->view('user/V_DashboardUser', $data);
+        // $this->load->view('user/test', $result);
     }
 
     public function reports_sales()

@@ -268,37 +268,34 @@ if (!function_exists('changeDateFormat')) {
 
             <!-- Card 2 -->
             <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
-                <div class="card info-card ">
 
-                    <div class="card-body">
-                        <h4 class="ct-selling">Top Sales <span>| <?php echo $months[(int)$bulanNow] ?></span></h4>
 
-                        <div class="card-body">
-                            <div class="rank-list">
-                                <?php foreach ($result as $key => $username) : ?>
-                                    <div class="rank-item <?php if ($key + 1 <= 3) echo 'first-three'; ?><?php if ($key + 1 > 3) echo 'rank-four-and-below'; ?>">
+                <div class="container">
+                    <h4 class="ct-selling">Top Sales <span>| <?php echo $months[(int)$bulanNow] ?></span></h4>
+                    <div class="rank-list">
+                        <?php foreach ($result as $key => $username) : ?>
+                            <div class="rank-item <?php if ($key + 1 <= 3) echo 'first-three'; ?><?php if ($key + 1 > 3) echo 'rank-four-and-below'; ?>">
 
-                                        <div class="username-container">
-                                            <span class="username"><?= $username['nama_sales']; ?></span>
-                                            <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan = <?= $username['jumlah']; ?></span>
-                                        </div>
+                                <div class="username-container">
+                                    <span class="username"><?= $username['nama_sales']; ?></span>
+                                    <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan = <?= $username['perolehan_sales_aktif']; ?></span>
+                                </div>
 
-                                        <?php if ($key + 1 == 1) : ?>
-                                            <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_01.png" alt="Medal">
-                                        <?php elseif ($key + 1 == 2) : ?>
-                                            <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_02.png" alt="Medal">
-                                        <?php elseif ($key + 1 == 3) : ?>
-                                            <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_03.png" alt="Medal">
-                                        <?php else : ?>
-                                            <span class="nomor"><?= '#' . $key + 1; ?></span>
-                                        <?php endif; ?>
+                                <?php if ($key + 1 == 1) : ?>
+                                    <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_01.png" alt="Medal">
+                                <?php elseif ($key + 1 == 2) : ?>
+                                    <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_02.png" alt="Medal">
+                                <?php elseif ($key + 1 == 3) : ?>
+                                    <img class="medal" src="<?php echo base_url(); ?>assets/img/medali/medali_03.png" alt="Medal">
+                                <?php else : ?>
+                                    <span class="nomor"><?= '#' . $key + 1; ?></span>
+                                <?php endif; ?>
 
-                                    </div>
-                                <?php endforeach; ?>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+
             </div>
 
         </div>

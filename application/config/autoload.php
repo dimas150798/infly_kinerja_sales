@@ -132,6 +132,6 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('M_Login', 'M_CRUD', 'M_Spreadsheet', 'M_SpreadsheetApril', 'M_SpreadsheetJuni', 'M_SpreadsheetMei', 'M_DataPerolehan', 'M_DataTerminasi');
+$autoload['model'] = array('M_Login', 'M_CRUD', 'M_Spreadsheet', 'M_SpreadsheetApril', 'M_SpreadsheetJuni', 'M_SpreadsheetMei', 'M_DataPerolehan', 'M_DataTerminasi', 'M_DataPerolehanSalesAll', 'M_DataPerolehanSalesAktif', 'M_SpreadsheetTerminasi');
 
 $config['composer_autoload'] = './vendor/autoload.php';

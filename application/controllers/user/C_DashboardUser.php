@@ -30,7 +30,6 @@ class C_DashboardUser extends CI_Controller
         $tahun          = $pecahDay[0];
         $bulan          = $pecahDay[1];
 
-
         // Mendapatkan tanggal sebulan yang lalu
         $dateOneMonthAgo = date('Y-m-d', strtotime('-1 month', strtotime($toDay)));
 
@@ -61,11 +60,13 @@ class C_DashboardUser extends CI_Controller
         $data['OneMonthAgo_TRW']      = $this->M_Spreadsheet->JumlahTRW($KodePerolehan_OneMonthAgo);
         $data['OneMonthAgo_KNG']      = $this->M_Spreadsheet->JumlahKanigaran($KodePerolehan_OneMonthAgo);
 
+        $this->M_SpreadsheetTerminasi->index();
         $this->M_Spreadsheet->index();
-
         $this->M_DataPerolehan->index();
+        $this->M_DataPerolehanSalesAll->index();
+        $this->M_DataPerolehanSalesAktif->index();
 
-        $data['result'] = $this->M_Spreadsheet->DataTopSelling($tahun, $bulan);
+        $data['result'] = $this->M_DataPerolehanSalesAktif->DataTopSelling($tahun, $bulan);
 
         $this->load->view('user/V_DashboardUser', $data);
         // $this->load->view('user/test', $result);

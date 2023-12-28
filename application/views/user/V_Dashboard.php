@@ -239,7 +239,25 @@
 
                                                 <div class="username-container">
                                                     <span class="username"><?= $value['nama_sales']; ?></span>
-                                                    <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan = <?= $value['perolehan_sales_aktif']; ?></span>
+                                                    <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['perolehan_sales_aktif']; ?></span>
+                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminasi = <?php
+                                                                                                                                if ($value['perolehan_sales_terminasi'] == NULL) {
+                                                                                                                                    echo '0';
+                                                                                                                                } else {
+                                                                                                                                    echo $value['perolehan_sales_terminasi'];
+                                                                                                                                }  ?></span>
+                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> 6 Bulan (-) = <?php
+                                                                                                                        if ($value['perolehan_sales_terminasi_6Month_Minus'] == NULL) {
+                                                                                                                            echo '0';
+                                                                                                                        } else {
+                                                                                                                            echo $value['perolehan_sales_terminasi_6Month_Minus'];
+                                                                                                                        }  ?></span>
+                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> 6 Bulan (+) = <?php
+                                                                                                                        if ($value['perolehan_sales_terminasi_6Month_Plus'] == NULL) {
+                                                                                                                            echo '0';
+                                                                                                                        } else {
+                                                                                                                            echo $value['perolehan_sales_terminasi_6Month_Plus'];
+                                                                                                                        }  ?></span>
                                                 </div>
 
                                                 <?php if ($key + 1 == 1) : ?>
@@ -259,7 +277,15 @@
                             </div>
 
                         </div>
+
+
                         <!-- </div> -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center align-items-center d-md-none">
+                            <button onclick="saveImage()" id="download-page-as-image" class="btn btn-secondary">Save Image</button>
+                        </div>
                     </div>
                 </div>
             </div>

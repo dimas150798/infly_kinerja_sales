@@ -54,11 +54,11 @@ class C_Dashboard extends CI_Controller
 
         $data['PerolehanSales']            = $this->M_DataPerolehanSales->Perolehan_Sales_Active($KodePerolehan_Now);
 
-        $this->M_Spreadsheet->index();
-        $this->M_SpreadsheetTerminasi->index();
-        $this->M_DataPerolehanPerbulan->index();
-        $this->M_DataPerolehanSales->index();
-        $this->M_DataPerolehanTerminasi->index();
+        // $this->M_Spreadsheet->index();
+        // $this->M_SpreadsheetTerminasi->index();
+        // $this->M_DataPerolehanPerbulan->index();
+        // $this->M_DataPerolehanSales->index();
+        // $this->M_DataPerolehanTerminasi->index();
 
         $data['DateNow'] = $ToDay;
         $data['title'] = 'Kinerja Sales';

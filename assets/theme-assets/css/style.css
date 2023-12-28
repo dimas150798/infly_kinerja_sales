@@ -30,11 +30,7 @@
 .informasi-body {
     padding: 1rem; 
 
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 1 auto;
-       -moz-box-flex: 1;
-        -ms-flex: 1 1 auto;
-            flex: 1 1 auto;
+ 
 }
 
 .informasi {
@@ -45,6 +41,7 @@
     border: 3px solid #fff;
     padding: 0.4rem; 
     margin-bottom: 5px;
+    width: 90%;
 }
 
 .informasi h3 {
@@ -86,15 +83,6 @@
 
 
 @media only screen and (max-width: 600px) {
-    .informasi {
-        margin: auto;
-        display: flex;
-        width: 340px;
-        color: #fff;
-        border: 3px solid #fff;
-        padding: 0.5rem; 
-        margin-bottom: 5px;
-    }
     
     .total-persentase {
         margin-left: 10px;
@@ -105,7 +93,7 @@
 /* TOP SALES */
 
 .topsales-card {
-    background-color: #219C90;
+    background-color: #000000;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -118,14 +106,15 @@
 .topsales-informasi {
     margin: auto;
     display: flex;
-    width: 600px;
     color: #fff;
     padding: 0.4rem; 
     margin-bottom: 5px;
+    width: 90%;
 }
 
 .rank-list {
     margin: auto;
+    width: 100%;
 }
 
 .rank-item {
@@ -137,7 +126,7 @@
     margin-bottom: 3px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 400px;
+    width: 100%; /* Menyesuaikan lebar dengan parent */
     -webkit-transition: background-color 0.3s ease;
     -moz-transition: background-color 0.3s ease;
     -ms-transition: background-color 0.3s ease;
@@ -149,9 +138,9 @@
 }
 
 .medal {
-    width: 60px;
-    height: 60px;
-    margin-right: 5px;
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
     filter: drop-shadow(16px 7px 8px );
     -webkit-filter: drop-shadow(0px 0px 10px  #000000);
 }
@@ -169,6 +158,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
+    margin-left: 25px;
 }
 
 .persentase-container {
@@ -182,7 +172,7 @@
 /* Add a blue border for ranks 1 to 3 */
 .rank-item.first-three{
     background-color: #43D9BD;
-    border: 3px solid #063573;
+    border: 3.5px solid #063573;
     border-radius: 7px;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
@@ -191,7 +181,7 @@
 }
 
 .rank-item.first-three .username {
-    font-size: 19px;
+    font-size: 22px;
     font-weight: bold;
     color: #000000;
     margin-bottom: 5px; 
@@ -199,7 +189,7 @@
 }
 
 .rank-item.first-three .jumlah {
-    font-size: 15px;
+    font-size: 16px;
     color: #000000;
     font-weight: bold;
 }
@@ -240,7 +230,7 @@
 /* Add a red border for ranks 4 and below */
 .rank-item.rank-four-and-below {
     background-color: #8C8C8C;
-    border: 3px solid #404040;
+    border: 3.5px solid #404040;
     border-radius: 7px;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
@@ -249,7 +239,7 @@
 }
 
 .rank-item.rank-four-and-below .username {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     color: #000000;
     margin-bottom: 5px; 
@@ -257,15 +247,15 @@
 }
 
 .rank-item.rank-four-and-below .jumlah {
-    font-size: 15px;
+    font-size: 16px;
     color: #000000;
     font-weight: bold;
 }
 
 .rank-item.rank-four-and-below .nomor {
-    margin-right: 20px; 
+    margin-right: 40px; 
     font-weight: bold;
-    font-size: 22px;
+    font-size: 26px;
     color: #000000;
 }
 
@@ -289,7 +279,8 @@
 
 .rank-item.rank-two-and-below .jumlah {
     font-size: 15px;
-    color: #ffffff;
+    color: #000000;
+
     font-weight: bold;
 }
 
@@ -318,26 +309,9 @@
     font-weight: bold;
 }
 
-@media only screen and (max-width: 600px) {
-    .rank-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background-color: #fff;
-        padding: 10px;
-        margin-bottom: 3px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        width: 300px;
-        -webkit-transition: background-color 0.3s ease;
-        -moz-transition: background-color 0.3s ease;
-        -ms-transition: background-color 0.3s ease;
-        -o-transition: background-color 0.3s ease;
-    }
-}
 
 
-/*  */
+/* Button Pencarian */
 .card-content {
     padding: 10px; /* Atur padding sesuai kebutuhan */
 }

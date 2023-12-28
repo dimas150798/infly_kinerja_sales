@@ -83,7 +83,6 @@
 
 
 @media only screen and (max-width: 600px) {
-    
     .total-persentase {
         margin-left: 10px;
         font-size: 17px;
@@ -158,7 +157,6 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    margin-left: 25px;
 }
 
 .persentase-container {
@@ -309,6 +307,109 @@
     font-weight: bold;
 }
 
+/* Aturan media query untuk perangkat dengan lebar layar maksimum 600px */
+@media only screen and (max-width: 600px) {
+    .username-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
+
+    .rank-item.first-three .username {
+        font-size: 20px;
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 5px; 
+        border-bottom: 2px solid #000000;
+    }
+    
+    .rank-item.first-three .jumlah {
+        font-size: 15px;
+        color: #000000;
+        font-weight: bold;
+    }
+
+    .rank-item.rank-four-and-below .username {
+        font-size: 20px;
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 5px; 
+        border-bottom: 2px solid #000000;
+    }
+    
+    .rank-item.rank-four-and-below .jumlah {
+        font-size: 15px;
+        color: #000000;
+        font-weight: bold;
+    }
+    
+    .rank-item.rank-four-and-below .nomor {
+        margin-right: 15px; 
+        font-weight: bold;
+        font-size: 26px;
+        color: #000000;
+    }
+
+    .medal {
+        width: 55px;
+        height: 55px;
+        margin-right: 3px;
+        filter: drop-shadow(16px 7px 8px );
+        -webkit-filter: drop-shadow(0px 0px 10px  #000000);
+    }
+    
+    /* Terminasi */
+    .rank-item.first .username {
+        font-size: 22px;
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 5px; 
+        border-bottom: 2px solid #000000;
+    }
+    
+    .rank-item.first .jumlah {
+        font-size: 15px;
+        color: #000000;
+        font-weight: bold;
+    }
+    
+    .rank-item.first .jumlah-terminasi {
+        font-size: 15px;
+        font-weight: bold;
+        color: #000000;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    .rank-item.rank-two-and-below .username {
+        font-size: 22px;
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 5px; 
+        border-bottom: 2px solid #000000;
+    }
+    
+    .rank-item.rank-two-and-below .jumlah {
+        font-size: 15px;
+        color: #000000;
+    
+        font-weight: bold;
+    }
+    
+    .rank-item.rank-two-and-below .jumlah-terminasi {
+        font-size: 13px;
+        color: #000000;
+        font-weight: bold;
+    }
+    
+    .rank-item.rank-two-and-below .nomor-terminasi {
+        font-weight: bold;
+        font-size: 22px;
+        color: #000000;
+    }
+
+}
 
 
 /* Button Pencarian */
@@ -338,8 +439,10 @@ label {
 .button-container {
     margin-left: auto; /* Menempatkan container di sebelah kanan */
     display: flex;
+    margin-top: 10px;
 }
 
 .btn-secondary {
     margin-left: 10px; /* Atur margin antara tombol Cari dan Data Perbulan */
 }
+

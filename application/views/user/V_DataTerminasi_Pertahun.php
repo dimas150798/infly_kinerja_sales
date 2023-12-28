@@ -102,21 +102,17 @@
                                             <div class="persentase-container">
                                                 <?php if ($key + 1 == 1) : ?>
                                                     <img class="medal-terminasi" src="<?php echo base_url(); ?>assets/img/medali/thropy_01.png" alt="Medal">
-                                                    <span class="jumlah-terminasi"><?= number_format($value['persentase_terminasi'], 2); ?> %</span>
+                                                    <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
                                                 <?php elseif ($key + 1 == 2) : ?>
                                                     <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
 
-                                                    <span class="jumlah-terminasi"><?= number_format($value['persentase_terminasi'], 2); ?> %</span>
-
+                                                    <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
                                                 <?php elseif ($key + 1 == 3) : ?>
                                                     <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
-
-                                                    <span class="jumlah-terminasi"><?= number_format($value['persentase_terminasi'], 2); ?> %</span>
-
+                                                    <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
                                                 <?php else : ?>
                                                     <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
-                                                    <span class="jumlah-terminasi"><?= number_format($value['persentase_terminasi'], 2); ?> %</span>
-
+                                                    <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
                                                 <?php endif; ?>
                                             </div>
 

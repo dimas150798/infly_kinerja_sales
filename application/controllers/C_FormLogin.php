@@ -47,7 +47,7 @@ class C_FormLogin extends CI_Controller
                 // Setting session login email
                 $this->session->set_userdata('email', $checkDataLogin->email_login);
 
-                redirect('user/C_DashboardUser');
+                redirect('user/C_Dashboard');
             } else {
                 // Notifikasi gagal login
                 $this->session->set_flashdata('LoginGagal_icon', 'error');

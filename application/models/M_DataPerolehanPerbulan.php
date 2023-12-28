@@ -1,19 +1,17 @@
 <?php
 
-class M_DataPerolehan extends CI_Model
+class M_DataPerolehanPerbulan extends CI_Model
 {
     public function index()
     {
         date_default_timezone_set("Asia/Jakarta");
 
         $DataSheet = $this->db->query("SELECT kode_perolehan, COUNT(*) AS jumlah_perolehan 
-        FROM data_sheets 
-        WHERE status_customer = 'active' AND kode_perolehan IS NOT NULL
-        GROUP BY kode_perolehan 
-        ORDER BY kode_perolehan
+            FROM data_sheets 
+            WHERE status_customer = 'active' AND kode_perolehan IS NOT NULL
+            GROUP BY kode_perolehan 
+            ORDER BY kode_perolehan
         ")->result_array();
-
-        $DataPerolehan = $this->db->query("SELECT id_perolehan, kode_perolehan, jumlah_perolehan FROM perolehan_perbulan")->result_array();
 
         foreach ($DataSheet as $dataSheet) {
 
@@ -44,7 +42,6 @@ class M_DataPerolehan extends CI_Model
             // Periksa apakah data sudah ada di tabel perolehan_sales
             $existingData = $this->db->get_where('perolehan_perbulan', [
                 'kode_perolehan' => $kodePerolehan,
-                'jumlah_perolehan' => $jumlahPerolehan,
                 'nama_bulan'    => $months[(int)$BulanPerolehan],
             ])->row_array();
 

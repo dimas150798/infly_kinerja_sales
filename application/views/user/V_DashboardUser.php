@@ -52,7 +52,7 @@ if (!function_exists('changeDateFormat')) {
                 <div class="card info-card sales-card card-1">
 
                     <div class="card-body">
-                        <h4 class="card-title">Informasi Penjualan <span>| <?php echo $months[(int)$bulanNow] ?></span></h4>
+                        <h4 class="card-title">INFORMASI PENJUALAN <span>| <?php echo $months[(int)$bulanNow] ?></span></h4>
 
                         <!-- Card 1 - Aktif -->
                         <div class="info-item mt-3">
@@ -88,6 +88,8 @@ if (!function_exists('changeDateFormat')) {
                                                     if ($changeAktif < 0) {
                                                         echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeAktif), 2) . '% Penurunan</strong></div>';
                                                     } elseif ($changeAktif > 0) {
+                                                        // echo '<div class="text-white ms-3"><strong>' . number_format(abs($percentageChangeAktif), 2) . '% Penurunan</strong></div>';
+
                                                         echo '<div class="text-white ms-3"><strong>' . number_format($percentageChangeAktif, 2) . '% Kenaikan</strong></div>';
                                                     } else {
                                                         echo '<div class="text-white ms-3"><strong>' . $JumlahAktif . '% Stabil</strong></div>';

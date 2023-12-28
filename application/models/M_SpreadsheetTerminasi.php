@@ -7,7 +7,7 @@ class M_SpreadsheetTerminasi extends CI_Model
     {
         $response = [];
 
-        $json_string = 'https://script.google.com/macros/s/AKfycbzY14wWun-d8Tc4R1QAcFBlwug3a_nnShIdGc0guL6PkXkHZ8F65U_ex9ZNnfeIt8Qbbw/exec';
+        $json_string = 'https://script.google.com/macros/s/AKfycby-6TuWIw5bh5HVwFF-l5EQj-TW_OlcMzYcvtPtks67YMB90-fJCLO5XsikVl5coZK-Mw/exec';
         $jsondata = file_get_contents($json_string);
         $obj = json_decode($jsondata, TRUE);
 
@@ -24,19 +24,23 @@ class M_SpreadsheetTerminasi extends CI_Model
                     if ($obj[$i]['no'] == $value['kode_terminasi_sheets']) {
                         $status = true;
 
-                        $KodeSheet = $value['kode_terminasi_sheets'];
-
                         $TanggalRegistrasi = $obj[$i]['tanggal_registrasi'];
                         $TanggalTerminasi = $obj[$i]['tanggal_terminasi'];
+
+                        // Memisahkan Tanggal Terminasi
+                        $pecahDay       = explode("-", $TanggalTerminasi);
+
+                        // Kode Perolehan Tanggal Sekarang
+                        $KodeTerminasi  = $pecahDay[0] . '-' . $pecahDay[1];
 
                         // Calculate the difference in months between tanggal_registrasi and tanggal_terminasi
                         $diff = date_diff(new DateTime($TanggalRegistrasi), new DateTime($TanggalTerminasi));
                         $diffInMonths = $diff->y * 12 + $diff->m;
 
-                        if ($diffInMonths > 6) {
-                            $status = 'Lebih Dari';
-                        } else {
+                        if ($diffInMonths >= 0 && $diffInMonths <= 5) {
                             $status = 'Kurang Dari';
+                        } else {
+                            $status = 'Lebih Dari';
                         }
 
                         $updateData = [
@@ -47,7 +51,9 @@ class M_SpreadsheetTerminasi extends CI_Model
                             'nama_sales' => $obj[$i]['nama_sales'],
                             'area' => $obj[$i]['area'],
                             'keterangan' => $obj[$i]['keterangan'],
-                            'status' => $status
+                            'jumlah_month' => $diffInMonths,
+                            'status' => $status,
+                            'kode_terminasi' => $KodeTerminasi
                         ];
 
                         // Memperbarui data
@@ -59,6 +65,26 @@ class M_SpreadsheetTerminasi extends CI_Model
 
             if (!empty($obj[$i]['nama_sales']) && !empty($obj[$i]['area'])) {
                 if (!$status && !empty($obj[$i]['no'])) {
+
+                    $TanggalRegistrasi = $obj[$i]['tanggal_registrasi'];
+                    $TanggalTerminasi = $obj[$i]['tanggal_terminasi'];
+
+                    // Memisahkan Tanggal Terminasi
+                    $pecahDay       = explode("-", $TanggalTerminasi);
+
+                    // Kode Perolehan Tanggal Sekarang
+                    $KodeTerminasi  = $pecahDay[0] . '-' . $pecahDay[1];
+
+                    // Calculate the difference in months between tanggal_registrasi and tanggal_terminasi
+                    $diff = date_diff(new DateTime($TanggalRegistrasi), new DateTime($TanggalTerminasi));
+                    $diffInMonths = $diff->y * 12 + $diff->m;
+
+                    if ($diffInMonths >= 0 && $diffInMonths <= 5) {
+                        $status = 'Kurang Dari';
+                    } else {
+                        $status = 'Lebih Dari';
+                    }
+
                     $insertData = [
                         'kode_terminasi_sheets' => $obj[$i]['no'],
                         'nama_pelanggan' => $obj[$i]['nama_pelanggan'],
@@ -66,7 +92,10 @@ class M_SpreadsheetTerminasi extends CI_Model
                         'tanggal_terminasi' => $obj[$i]['tanggal_terminasi'],
                         'nama_sales' => $obj[$i]['nama_sales'],
                         'area' => $obj[$i]['area'],
-                        'keterangan' => $obj[$i]['keterangan']
+                        'keterangan' => $obj[$i]['keterangan'],
+                        'jumlah_month' => $diffInMonths,
+                        'status' => $status,
+                        'kode_terminasi' => $KodeTerminasi
                     ];
 
                     // Menyisipkan data baru

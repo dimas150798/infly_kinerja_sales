@@ -298,9 +298,10 @@
                                                 <div class="username-container">
                                                     <span class="username"><?= $value['nama_sales']; ?></span>
                                                     <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['total_aktif']; ?></span>
-                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminated = <?= $value['total_terminasi']; ?></span>
-                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> 6 Bulan (-) = <?= $value['KurangDari_6Bulan']; ?></span>
-                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> 6 Bulan (+) = <?= $value['LebihDari_6Bulan']; ?></span>
+                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminasi = <?= $value['total_terminasi']; ?></span>
+                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i>
+                                                        < 6 Bulan&nbsp;=&nbsp;<?= $value['KurangDari_6Bulan']; ?></span>
+                                                            <span class="jumlah"><i class="bi bi-wifi-off"></i> > 6 Bulan&nbsp;=&nbsp;<?= $value['LebihDari_6Bulan']; ?></span>
                                                 </div>
 
                                                 <div class="persentase-container">
@@ -379,9 +380,10 @@
                                                 <div class="username-container">
                                                     <span class="username"><?= $value['nama_sales']; ?></span>
                                                     <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['total_aktif']; ?></span>
-                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> </i> Perolehan Terminated = <?= $value['total_terminasi']; ?></span>
-                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> </i> 6 Bulan (-) = <?= $value['KurangDari_6Bulan']; ?></span>
-                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> </i> 6 Bulan (+) = <?= $value['LebihDari_6Bulan']; ?></span>
+                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> </i> Perolehan Terminasi = <?= $value['total_terminasi']; ?></span>
+                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> </i>
+                                                        < 6 Bulan&nbsp;=&nbsp;<?= $value['KurangDari_6Bulan']; ?></span>
+                                                            <span class="jumlah"><i class="bi bi-wifi-off"></i> </i> > 6 Bulan = <?= $value['LebihDari_6Bulan']; ?></span>
                                                 </div>
 
                                                 <div class="persentase-container">

@@ -25,11 +25,83 @@
     setUpDownloadPageAsImage();
 
     function setUpDownloadPageAsImage() {
-        document.getElementById("download-page-as-image").addEventListener("click", function() {
+        document.getElementById("download-topsales").addEventListener("click", function() {
             // Ganti document.body dengan selector elemen yang ingin Anda simpan
-            html2canvas(document.querySelector('.topsales-card')).then(function(canvas) {
+            html2canvas(document.querySelector('.topsales')).then(function(canvas) {
                 console.log(canvas);
-                simulateDownloadImageClick(canvas.toDataURL(), 'file-name.png');
+                simulateDownloadImageClick(canvas.toDataURL(), 'top-sales.png');
+            });
+        });
+    }
+
+    function simulateDownloadImageClick(uri, filename) {
+        var link = document.createElement('a');
+        if (typeof link.download !== 'string') {
+            window.open(uri);
+        } else {
+            link.href = uri;
+            link.download = filename;
+            accountForFirefox(clickLink, link);
+        }
+    }
+
+    function clickLink(link) {
+        link.click();
+    }
+
+    function accountForFirefox(click) { // wrapper function
+        let link = arguments[1];
+        document.body.appendChild(link);
+        click(link);
+        document.body.removeChild(link);
+    }
+</script>
+
+<script>
+    setUpDownloadPageAsImage();
+
+    function setUpDownloadPageAsImage() {
+        document.getElementById("download-perbulan").addEventListener("click", function() {
+            // Ganti document.body dengan selector elemen yang ingin Anda simpan
+            html2canvas(document.querySelector('.perbulan')).then(function(canvas) {
+                console.log(canvas);
+                simulateDownloadImageClick(canvas.toDataURL(), 'terminasi-perbulan.png');
+            });
+        });
+    }
+
+    function simulateDownloadImageClick(uri, filename) {
+        var link = document.createElement('a');
+        if (typeof link.download !== 'string') {
+            window.open(uri);
+        } else {
+            link.href = uri;
+            link.download = filename;
+            accountForFirefox(clickLink, link);
+        }
+    }
+
+    function clickLink(link) {
+        link.click();
+    }
+
+    function accountForFirefox(click) { // wrapper function
+        let link = arguments[1];
+        document.body.appendChild(link);
+        click(link);
+        document.body.removeChild(link);
+    }
+</script>
+
+<script>
+    setUpDownloadPageAsImage();
+
+    function setUpDownloadPageAsImage() {
+        document.getElementById("download-pertahun").addEventListener("click", function() {
+            // Ganti document.body dengan selector elemen yang ingin Anda simpan
+            html2canvas(document.querySelector('.pertahun')).then(function(canvas) {
+                console.log(canvas);
+                simulateDownloadImageClick(canvas.toDataURL(), 'terminasi-pertahun.png');
             });
         });
     }

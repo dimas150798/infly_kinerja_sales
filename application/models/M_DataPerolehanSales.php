@@ -19,7 +19,7 @@ class M_DataPerolehanSales extends CI_Model
             SUM(CASE WHEN status_customer = 'active' THEN 1 ELSE 0 END) AS perolehan_sales_aktif
         FROM
             data_sheets
-            WHERE kode_perolehan = '$KodePerolehanDate'
+            WHERE kode_perolehan = '$KodePerolehanDate' AND nama_sales != ''
         GROUP BY
             nama_sales,
             kode_perolehan;
@@ -64,7 +64,7 @@ class M_DataPerolehanSales extends CI_Model
 
         LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai
         
-        WHERE kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_aktif != 0 AND data_pegawai.status = 'Aktif' AND data_pegawai.jabatan = 'Sales'
+        WHERE kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_aktif != 0
         GROUP BY nama_sales
 
         ORDER BY perolehan_sales_aktif DESC");

@@ -30,6 +30,23 @@
                 </li>
                 <li class=" nav-item"><a href="<?php echo base_url('user/C_DataTerminasi_Pertahun') ?>"><i class="ft-list"></i><span class="menu-title" data-i18n="">Data Terminasi</span></a>
                 </li>
+                <!-- <li class="nav-item">
+                    <a href="javascript:void(0)">
+                        <i class="ft-list"></i>
+                        <span class="menu-title" data-i18n="">Pelanggan</span>
+                        <i class="bi bi-caret-down-fill"></i>
+                    </a>
+                    <ul class="menu-content">
+                        <li class="nav-item">
+                            <a href="<?php echo base_url('user/C_DataTerminasi_Pertahun') ?>">
+                                <i class="ft-arrow-right"></i>
+                                <span class="menu-title" data-i18n="">Data Termination by Year</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li> -->
+
+
             </ul>
         </div>
     </div>

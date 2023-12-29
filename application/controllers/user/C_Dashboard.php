@@ -25,11 +25,29 @@ class C_Dashboard extends CI_Controller
         // Mendapatkan tanggal sekarang
         $ToDay              = date('d-m-Y');
 
-        // Mendapatkan tanggal 1 bulan sebelumnya
-        $DateOneMonthAgo    = date('d-m-Y', strtotime('-1 month', strtotime($ToDay)));
-
         // Memisahkan Tanggal Sekarang
         $PecahToDay         = explode("-", $ToDay);
+
+        $months = array(
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        );
+
+        // Menambahkan 0 di depan bulan jika kurang dari 10
+        $BulanPerolehan = sprintf("%02d", $PecahToDay[1]);
+
+        // Mendapatkan tanggal 1 bulan sebelumnya
+        $DateOneMonthAgo    = date('d-m-Y', strtotime('-1 month', strtotime($ToDay)));
 
         // Memisahkan Tanggal 1 Bulan sebelumnya
         $PecahOneMonthAgo   = explode("-", $DateOneMonthAgo);
@@ -54,14 +72,23 @@ class C_Dashboard extends CI_Controller
 
         $data['PerolehanSales']            = $this->M_DataPerolehanSales->Perolehan_Sales_Active($KodePerolehan_Now);
 
+        // Perolehan Rangked Perbulan Terminasi
+        $data['PerolehanSalesPerbulan'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi_Perbulan($KodePerolehan_Now);
+
+        // Perolehan Rangked Pertahun Terminasi
+        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi($PecahToDay[2]);
+
+
         $this->M_Spreadsheet->index();
         $this->M_SpreadsheetTerminasi->index();
         $this->M_DataPerolehanPerbulan->index();
         $this->M_DataPerolehanSales->index();
         $this->M_DataPerolehanTerminasi->index();
 
-        $data['DateNow'] = $ToDay;
-        $data['title'] = 'Kinerja Sales';
+        $data['DateNow']    = $ToDay;
+        $data['MonthNow']   = $months[(int)$BulanPerolehan];
+        $data['Year']       = $PecahToDay[2];
+        $data['title']      = 'Kinerja Sales';
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);

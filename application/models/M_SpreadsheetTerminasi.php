@@ -21,7 +21,7 @@ class M_SpreadsheetTerminasi extends CI_Model
 
             if (!empty($obj[$i]['nama_sales']) && !empty($obj[$i]['area'])) {
                 foreach ($getData as $value) {
-                    if ($obj[$i]['no'] == $value['kode_terminasi_sheets']) {
+                    if ($obj[$i]['no'] == $value['kode_terminasi_sheets'] && $obj[$i]['nama_sales'] == $value['nama_sales']) {
                         $status = true;
 
                         $TanggalRegistrasi = $obj[$i]['tanggal_registrasi'];

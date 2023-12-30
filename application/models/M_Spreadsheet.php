@@ -19,7 +19,7 @@ class M_Spreadsheet extends CI_Model
             $status = false;
 
             foreach ($getData as $value) {
-                if ($obj[$i]['kode'] == $value['kode_sheet']) {
+                if ($obj[$i]['kode'] == $value['kode_sheet'] && $obj[$i]['sales'] = $value['nama_sales']) {
                     $status = true;
 
                     $KodeSheet = $value['kode_sheet'];

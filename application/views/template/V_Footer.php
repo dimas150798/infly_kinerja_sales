@@ -14,6 +14,20 @@
 
 
 
+<!-- BEGIN VENDOR JS-->
+<script src="<?php echo base_url(); ?>assets/theme-assets/vendors/js/vendors.min.js"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+<script src="<?php echo base_url(); ?>assets/theme-assets/vendors/js/charts/chartist.min.js"></script>
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN CHAMELEON  JS-->
+<script src="<?php echo base_url(); ?>assets/theme-assets/js/core/app-menu-lite.js"></script>
+<script src="<?php echo base_url(); ?>assets/theme-assets/js/core/app-lite.js"></script>
+<!-- END CHAMELEON  JS-->
+<!-- BEGIN PAGE LEVEL JS-->
+<script src="<?php echo base_url(); ?>assets/theme-assets/js/scripts/pages/dashboard-lite.js"></script>
+<!-- END PAGE LEVEL JS-->
+
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <!-- Ajax Show Data Pelanggan -->

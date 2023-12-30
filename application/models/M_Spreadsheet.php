@@ -36,7 +36,6 @@ class M_Spreadsheet extends CI_Model
                     $KodePerolehan = $tahun . '-' . $bulan;
 
                     $updateData = [
-                        'kode_sheet' => $obj[$i]['kode'],
                         'tanggal_customer' => $obj[$i]['tanggal'],
                         'nama_customer' => $obj[$i]['nama_customer'],
                         'nama_paket' => $obj[$i]['nama_paket'],

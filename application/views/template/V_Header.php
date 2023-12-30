@@ -16,6 +16,25 @@
 
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
+
+    <!-- Datatables -->
+    <!-- jQuery CDN -->
+
+
+    <!-- Data Tables -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.1/af-2.5.1/r-2.4.0/datatables.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.semanticui.min.css" />
+
+    <!-- Font  -->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Jquery 3.6.0 -->
+    <script src="<?php echo base_url(); ?>assets/js/jquery-3.6.0.min.js">
+    </script>
+
     <!-- BEGIN VENDOR CSS-->
     <link href="<?php echo base_url(); ?>assets/theme-assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/theme-assets/css/vendors.css" rel="stylesheet" />

@@ -36,6 +36,24 @@ class M_DataSheets extends CI_Model
         return $query->num_rows();
     }
 
+
+    public function PelangganAktif($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
+        nama_paket, branch_customer, alamat_customer, nama_sales, kode_perolehan FROM data_sheets
+        WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan' ");
+
+        return $query->result_array();
+    }
+
+
+
+
+
+
+
+
+
     public function GetDataSheet($tahun, $bulan)
     {
         $query = $this->db->query("SELECT id_sheet, kode_sheet, tanggal, nama_customer, nama_paket, branch, alamat, status, sales, month_cust, year_cust

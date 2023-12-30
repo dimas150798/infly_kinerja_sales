@@ -30,6 +30,8 @@
                 </li>
                 <li class=" nav-item"><a href="<?php echo base_url('user/C_DataTerminasi_Pertahun') ?>"><i class="ft-list"></i><span class="menu-title" data-i18n="">Data Terminasi</span></a>
                 </li>
+                <!-- <li class=" nav-item"><a href="<?php echo base_url('user/C_DataPelanggan_Aktif') ?>"><i class="ft-list"></i><span class="menu-title" data-i18n="">Data Aktif</span></a>
+                </li> -->
                 <!-- <li class="nav-item">
                     <a href="javascript:void(0)">
                         <i class="ft-list"></i>

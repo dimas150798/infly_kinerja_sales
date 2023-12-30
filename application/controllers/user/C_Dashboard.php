@@ -80,9 +80,13 @@ class C_Dashboard extends CI_Controller
 
 
         $this->M_Spreadsheet->index();
+
         $this->M_SpreadsheetTerminasi->index();
+
         $this->M_DataPerolehanPerbulan->index();
+
         $this->M_DataPerolehanSales->index();
+
         $this->M_DataPerolehanTerminasi->index();
 
         $data['DateNow']    = $ToDay;

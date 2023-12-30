@@ -4,21 +4,36 @@
     </div>
 </footer>
 
-<!-- BEGIN VENDOR JS-->
-<script src="<?php echo base_url(); ?>assets/theme-assets/vendors/js/vendors.min.js"></script>
-<!-- BEGIN VENDOR JS-->
-<!-- BEGIN PAGE VENDOR JS-->
-<script src="<?php echo base_url(); ?>assets/theme-assets/vendors/js/charts/chartist.min.js"></script>
-<!-- END PAGE VENDOR JS-->
-<!-- BEGIN CHAMELEON  JS-->
-<script src="<?php echo base_url(); ?>assets/theme-assets/js/core/app-menu-lite.js"></script>
-<script src="<?php echo base_url(); ?>assets/theme-assets/js/core/app-lite.js"></script>
-<!-- END CHAMELEON  JS-->
-<!-- BEGIN PAGE LEVEL JS-->
-<script src="<?php echo base_url(); ?>assets/theme-assets/js/scripts/pages/dashboard-lite.js"></script>
-<!-- END PAGE LEVEL JS-->
+<!-- JS dataTables -->
+<!-- jQuery -->
+<!-- DataTables CSS CDN -->
+<!-- JS dataTables -->
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
+
 
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<!-- Ajax Show Data Pelanggan -->
+<!-- Ajax Show Data Pelanggan -->
+<script>
+    $(document).ready(function() {
+        $('#mytable').DataTable({
+            "autoFill": true,
+            "pagingType": 'numbers',
+            "searching": true,
+            "paging": true,
+            "stateSave": true,
+            "processing": true,
+            "serverside": true,
+            "ajax": {
+                "url": "<?= base_url('user/C_DataPelanggan_Aktif/GetDataAjax'); ?>",
+            },
+        })
+    })
+</script>
 
 
 <script>

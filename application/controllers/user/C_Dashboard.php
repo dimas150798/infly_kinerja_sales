@@ -22,8 +22,11 @@ class C_Dashboard extends CI_Controller
     public function index()
     {
         date_default_timezone_set("Asia/Jakarta");
-        // Mendapatkan tanggal sekarang
-        $ToDay              = date('d-m-Y');
+
+        $ToDay = date('Y-m-d'); // Pastikan $ToDay dalam format Y-m-d
+        $ToDayYMD = date('Y-m-d', strtotime($ToDay));
+
+        // $ToDay              = date('d-m-Y');
 
         // Memisahkan Tanggal Sekarang
         $PecahToDay         = explode("-", $ToDay);
@@ -47,16 +50,22 @@ class C_Dashboard extends CI_Controller
         $BulanPerolehan = sprintf("%02d", $PecahToDay[1]);
 
         // Mendapatkan tanggal 1 bulan sebelumnya
-        $DateOneMonthAgo    = date('d-m-Y', strtotime('-1 month', strtotime($ToDay)));
+        $DateOneMonthAgo = date('d-m-Y', strtotime('-1 month', strtotime($ToDayYMD)));
+
+        if (date('d', strtotime($ToDayYMD)) == 31) {
+            // Ambil tanggal terakhir bulan sebelumnya
+            $DateOneMonthAgo = date('d-m-Y', strtotime('last day of previous month', strtotime($ToDayYMD)));
+        }
 
         // Memisahkan Tanggal 1 Bulan sebelumnya
         $PecahOneMonthAgo   = explode("-", $DateOneMonthAgo);
 
         // Kode Perolehan Tanggal Sekarang
-        $KodePerolehan_Now  = $PecahToDay[2] . '-' . $PecahToDay[1];
+        $KodePerolehan_Now  = $PecahToDay[0] . '-' . $PecahToDay[1];
 
         // Kode Perolehan 1 Bulan Sebelumnnya
         $KodePerolehan      = $PecahOneMonthAgo[2] . '-' . $PecahOneMonthAgo[1];
+
 
         // Data Tanggal Sekarang
         $data['TotalPelangganAll_Now']  = $this->M_DataSheets->TotalPelangganAktif($KodePerolehan_Now);
@@ -70,13 +79,13 @@ class C_Dashboard extends CI_Controller
         $data['TotalPelangganTRW_Before']  = $this->M_DataSheets->TotalPelangganAktif_TRW($KodePerolehan);
         $data['TotalPelangganKNG_Before']  = $this->M_DataSheets->TotalPelangganAktif_KNG($KodePerolehan);
 
-        $data['PerolehanSales']            = $this->M_DataPerolehanSales->Perolehan_Sales_Active($KodePerolehan_Now);
+        $data['PerolehanSales']         = $this->M_DataPerolehanSales->Perolehan_Sales_Active($KodePerolehan_Now);
 
         // Perolehan Rangked Perbulan Terminasi
         $data['PerolehanSalesPerbulan'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi_Perbulan($KodePerolehan_Now);
 
         // Perolehan Rangked Pertahun Terminasi
-        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi($PecahToDay[2]);
+        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi(date('Y'));
 
 
         $this->M_Spreadsheet->index();
@@ -89,9 +98,9 @@ class C_Dashboard extends CI_Controller
 
         $this->M_DataPerolehanTerminasi->index();
 
-        $data['DateNow']    = $ToDay;
+        $data['DateNow']    = date('d-m-Y');
         $data['MonthNow']   = $months[(int)$BulanPerolehan];
-        $data['Year']       = $PecahToDay[2];
+        $data['Year']       = date('Y');
         $data['title']      = 'Kinerja Sales';
 
         $this->load->view('template/V_Header', $data);
